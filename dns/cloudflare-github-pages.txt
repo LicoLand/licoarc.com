@@ -1,0 +1,25 @@
+;; licoarc.com GitHub Pages records for Cloudflare BIND import.
+;; The zone already exists in Cloudflare, so SOA and authoritative NS records
+;; are intentionally omitted.
+;;
+;; Configure licoarc.com as the repository's GitHub Pages custom domain before
+;; importing these records. Add GitHub's real organization-verification TXT
+;; record separately; this file never contains a token placeholder.
+
+$ORIGIN licoarc.com.
+$TTL 3600
+
+;; GitHub Pages apex IPv4 records
+licoarc.com.      3600 IN A     185.199.108.153 ; GitHub Pages apex cf_tags=cf-proxied:false
+licoarc.com.      3600 IN A     185.199.109.153 ; GitHub Pages apex cf_tags=cf-proxied:false
+licoarc.com.      3600 IN A     185.199.110.153 ; GitHub Pages apex cf_tags=cf-proxied:false
+licoarc.com.      3600 IN A     185.199.111.153 ; GitHub Pages apex cf_tags=cf-proxied:false
+
+;; GitHub Pages apex IPv6 records
+licoarc.com.      3600 IN AAAA  2606:50c0:8000::153 ; GitHub Pages apex cf_tags=cf-proxied:false
+licoarc.com.      3600 IN AAAA  2606:50c0:8001::153 ; GitHub Pages apex cf_tags=cf-proxied:false
+licoarc.com.      3600 IN AAAA  2606:50c0:8002::153 ; GitHub Pages apex cf_tags=cf-proxied:false
+licoarc.com.      3600 IN AAAA  2606:50c0:8003::153 ; GitHub Pages apex cf_tags=cf-proxied:false
+
+;; GitHub Pages organization target for the www variant
+www.licoarc.com.  3600 IN CNAME licoland.github.io. ; GitHub Pages www cf_tags=cf-proxied:false
