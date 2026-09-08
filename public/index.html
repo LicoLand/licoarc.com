@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LicoArc — Encrypted messaging and federation protocol</title>
+    <meta name="description" content="Explore the LicoArc Candidate protocol for end-to-end encrypted messaging, independent device identity, reliable exchange, and federation across untrusted relays.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="canonical" href="https://licoarc.com/">
+    <script>try{const t=localStorage.getItem("licoarc-theme");if(t==="light")document.documentElement.dataset.theme="light"}catch{}</script>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script src="/assets/site.js" defer></script>
+  
+<link rel="describedby" href="/llms.txt">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lico Arc Protocol">
+<meta property="og:title" content="LicoArc — Encrypted messaging and federation protocol">
+<meta property="og:description" content="Explore the LicoArc Candidate protocol for end-to-end encrypted messaging, independent device identity, reliable exchange, and federation across untrusted relays.">
+<meta property="og:url" content="https://licoarc.com/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://licoarc.com/#website", "url": "https://licoarc.com/", "inLanguage": "en", "name": "Lico Arc Protocol", "description": "Explore the LicoArc Candidate protocol for end-to-end encrypted messaging, independent device identity, reliable exchange, and federation across untrusted relays.", "alternateName": "LicoArc"}</script>
+</head>
+  <body>
+    <!--
+      THESIS: One exact protocol definition should read like an inspectable instrument, not a marketing landing page.
+      OWN-WORLD: Near-black workbench, charcoal controls, cyan focus and source links, hairline structure, system sans and data monospace.
+      STORY: Identify the boundary, inspect the current lifecycle, traverse every capability, then verify against canonical source.
+      FIRST VIEWPORT: Sticky tool bar above a chapter rail and a narrow opening statement; the lifecycle strip and Read the definition action remain visible without spectacle.
+      FORM: Familiar open-protocol reading surface, first and selected direction; seed key inherited from the completed Impeccable context round.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header"><div class="header-inner">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LA</span><span class="brand-text">Lico Arc Protocol</span></a>
+      <form class="search" role="search" data-search><label for="site-search">Search documentation</label><input id="site-search" type="search" placeholder="Search the protocol…" autocomplete="off"><span class="search-hint" aria-hidden="true">/</span><div class="search-panel" data-search-panel hidden><p class="search-status" data-search-status aria-live="polite">Type a title, heading, or protocol term.</p><ul class="search-results" data-search-results></ul></div></form>
+      <div class="header-actions"><button class="quiet-button" type="button" data-theme-toggle aria-pressed="false">Light</button><a class="source-button" href="https://github.com/LicoLand/LicoArc">Source</a></div>
+    </div></header>
+    <div class="page">
+      <nav class="rail" aria-label="Documentation"><p class="rail-title">Documentation</p><ol>
+        <li><a href="/docs/">Overview</a></li><li><a href="/docs/concepts/">Core concepts</a></li><li><a href="/docs/protocol-line/">Protocol Line</a></li><li><a href="/docs/foundation/">Foundation</a></li><li><a href="/docs/identity/">Identity</a></li><li><a href="/docs/protection/">Pairwise protection</a></li><li><a href="/docs/messaging-reliable/">Messaging &amp; reliability</a></li><li><a href="/docs/transport/">HTTPS transport</a></li><li><a href="/docs/group-federation/">Groups &amp; federation</a></li><li><a href="/docs/verification/">Verification</a></li><li><a href="/docs/governance/">Governance &amp; license</a></li>
+      </ol></nav>
+      <main class="article" id="content">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li aria-current="page">Home</li></ol></nav>
+        <h1>An open protocol for encrypted messaging.</h1>
+        <p class="lede">LicoArc defines one implementation-neutral Protocol Line for end-to-end encrypted messaging, independent device identity, reliable exchange, groups, and federation across untrusted relay Stations.</p>
+        <div class="actions"><a class="primary-action" href="/docs/">Read the definition</a><a class="quiet-button" href="/docs/verification/">Verify the source boundary</a></div>
+        <div class="status-strip" aria-label="Current Protocol Line status">
+          <div class="status-item"><span>Protocol</span><strong>V1 · Generation 1</strong></div><div class="status-item"><span>Lifecycle</span><strong>Candidate</strong></div><div class="status-item"><span>Definition</span><strong class="eligible">COMPLETE · 8/8</strong></div><div class="status-item"><span>Publication</span><strong class="ineligible">Ineligible</strong></div>
+        </div>
+        <div class="callout"><p><strong>Lifecycle boundary.</strong> Session eligibility permits new sessions under this fixed Candidate definition. It does not make the Protocol Line published or immutable, or establish implementation, interoperability, deployment, support, or operation.</p></div>
+        <div class="source-note"><span>SOURCE</span><a href="https://github.com/LicoLand/LicoArc/blob/release/spec/protocol-lines.json">Canonical Protocol Line registry</a></div>
+        <section aria-labelledby="capabilities"><h2 id="capabilities">Eight capabilities, one closed line</h2><p>Each mandatory capability is complete in the current definition. The line binds their semantic identities and the active protection profile into one exact content identity.</p>
+          <ol class="capability-list">
+            <li><a href="/docs/foundation/">Protocol Foundation</a><p>Representations, closed registries, bounds, lifecycle, and content identity.</p><span class="row-arrow" aria-hidden="true">→</span></li>
+            <li><a href="/docs/identity/">Identity</a><p>User authority, independent Endpoint devices, recovery, and transparency.</p><span class="row-arrow" aria-hidden="true">→</span></li>
+            <li><a href="/docs/protection/">Pairwise Protection</a><p>The indivisible hybrid establishment and protected-record profile.</p><span class="row-arrow" aria-hidden="true">→</span></li>
+            <li><a href="/docs/messaging-reliable/#generic-messaging">Generic Messaging</a><p>Six protected message classes and resumable attachment state.</p><span class="row-arrow" aria-hidden="true">→</span></li>
+            <li><a href="/docs/messaging-reliable/#reliable-exchange">Reliable Exchange</a><p>Stable intent, retries, Endpoint confirmations, and restart convergence.</p><span class="row-arrow" aria-hidden="true">→</span></li>
+            <li><a href="/docs/transport/">HTTPS Transport</a><p>A bounded HTTP/2 and TLS 1.3 carrier with no security authority.</p><span class="row-arrow" aria-hidden="true">→</span></li>
+            <li><a href="/docs/group-federation/#group-collaboration">Group Collaboration</a><p>Bounded protected membership, transitions, projections, and partial failure.</p><span class="row-arrow" aria-hidden="true">→</span></li>
+            <li><a href="/docs/group-federation/#federation-governance">Federation Governance</a><p>Threshold evidence, distribution binding, equivocation, and local admission.</p><span class="row-arrow" aria-hidden="true">→</span></li>
+          </ol>
+        </section>
+        <section aria-labelledby="agent-guide"><h2 id="agent-guide">Evaluating communication for agents?</h2><p>Start with Endpoint identity, protected messages, and authenticated confirmations. The overview connects those protocol boundaries to an isolated agent runtime and explains the application responsibilities.</p><p><a href="/docs/#agent-communication">Read the agent communication guide</a></p></section>
+        <section aria-labelledby="authority"><h2 id="authority">A map to the authority</h2><p>This site is an orientation layer. Machine-readable protocol authority lives under <code>spec/</code> and <code>conformance/</code>; human-readable normative projections live under <code>docs/protocols/</code>. Follow the source links on each chapter when exact fields, bounds, or failures matter.</p><div class="actions"><a class="quiet-button" href="https://github.com/LicoLand/LicoArc">Open the public repository</a><a class="quiet-button" href="/docs/governance/">Governance and Apache-2.0</a></div></section>
+      </main>
+    </div>
+    <footer class="site-footer"><div class="footer-inner"><span>Lico Arc Protocol · Candidate definition</span><span>Protocol source available under Apache-2.0</span></div></footer>
+  </body>
+</html>

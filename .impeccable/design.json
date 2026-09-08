@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-08T00:00:00Z",
+  "title": "Design System: Lico Arc Protocol Documentation",
+  "extensions": {
+    "themes": {
+      "dark": {
+        "canvas": "#090b0e",
+        "navigation": "#0d1015",
+        "surface": "#11161d",
+        "surfaceStrong": "#161d26",
+        "text": "#edf3f8",
+        "muted": "#9eabb9",
+        "faint": "#748191",
+        "line": "#27313d",
+        "accent": "#67d6ff",
+        "accentStrong": "#9ae5ff",
+        "accentSoft": "#102a35",
+        "positive": "#77deb2",
+        "caution": "#f3c969",
+        "code": "#0b0f14",
+        "selection": "#17465a"
+      },
+      "light": {
+        "canvas": "#f6f8fa",
+        "navigation": "#ffffff",
+        "surface": "#ffffff",
+        "surfaceStrong": "#eef2f5",
+        "text": "#15202b",
+        "muted": "#526171",
+        "faint": "#5f7080",
+        "line": "#d5dde5",
+        "accent": "#006d91",
+        "accentStrong": "#005a79",
+        "accentSoft": "#dff4fb",
+        "positive": "#087a50",
+        "caution": "#7c5800",
+        "code": "#eef2f5",
+        "selection": "#b8eafa"
+      }
+    },
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Source Cyan",
+        "canonical": "#67d6ff",
+        "tonalRamp": ["#06202b", "#0c3342", "#145067", "#1d718f", "#3198bb", "#67d6ff", "#9ae5ff", "#d9f6ff"]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Protocol Canvas",
+        "canonical": "#090b0e",
+        "tonalRamp": ["#090b0e", "#11161d", "#1b232d", "#2d3845", "#536170", "#8794a2", "#c2cad2", "#edf3f8"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Protocol Display",
+        "purpose": "Root and chapter titles with compact technical authority."
+      },
+      "body": {
+        "displayName": "Reading Body",
+        "purpose": "Long-form protocol explanation at a maximum 72ch measure."
+      },
+      "label": {
+        "displayName": "Literal Label",
+        "purpose": "Protocol identifiers, state values, code, and compact metadata."
+      }
+    },
+    "shadows": [
+      {
+        "name": "search-float",
+        "value": "0 1rem 2.8rem rgba(0, 0, 0, 0.35)",
+        "purpose": "Separates the open search results from the reading surface."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-change",
+        "value": "160ms ease-out",
+        "purpose": "Color, border, and background feedback on interactive controls; removed for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      { "name": "navigation-collapse", "value": "820px" },
+      { "name": "single-column-data", "value": "480px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main reading or source action.",
+      "html": "<a class=\"ds-primary\" href=\"#\">Read the definition</a>",
+      "css": ".ds-primary { display:inline-flex; align-items:center; min-height:2.65rem; padding:.55rem .9rem; border:1px solid #67d6ff; border-radius:.45rem; background:#67d6ff; color:#061017; font:750 .88rem/1.5 ui-sans-serif,system-ui,sans-serif; text-decoration:none; } .ds-primary:hover { background:#9ae5ff; } .ds-primary:focus-visible { outline:3px solid #67d6ff; outline-offset:3px; }"
+    },
+    {
+      "name": "Quiet Action",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Secondary navigation and theme actions.",
+      "html": "<button class=\"ds-quiet\">Light</button>",
+      "css": ".ds-quiet { min-height:2.35rem; padding:.45rem .7rem; border:1px solid #27313d; border-radius:.45rem; background:#11161d; color:#edf3f8; font:650 .82rem/1.5 ui-sans-serif,system-ui,sans-serif; } .ds-quiet:hover { border-color:#748191; background:#161d26; } .ds-quiet:focus-visible { outline:3px solid #67d6ff; outline-offset:3px; }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Persistent bounded local documentation search.",
+      "html": "<input class=\"ds-search\" type=\"search\" placeholder=\"Search the protocol…\">",
+      "css": ".ds-search { width:22rem; height:2.5rem; padding:0 .9rem; border:1px solid #27313d; border-radius:.625rem; background:#11161d; color:#edf3f8; font:1rem/1.5 ui-sans-serif,system-ui,sans-serif; } .ds-search::placeholder { color:#748191; } .ds-search:focus-visible { outline:3px solid #67d6ff; outline-offset:3px; }"
+    },
+    {
+      "name": "Current Chapter",
+      "kind": "nav",
+      "description": "Selected state in the desktop chapter rail.",
+      "html": "<a class=\"ds-current\" href=\"#\">Protocol Line</a>",
+      "css": ".ds-current { display:block; padding:.38rem .55rem; border-radius:.35rem; background:#102a35; color:#9ae5ff; font:680 .86rem/1.35 ui-sans-serif,system-ui,sans-serif; text-decoration:none; } .ds-current:focus-visible { outline:3px solid #67d6ff; outline-offset:3px; }"
+    },
+    {
+      "name": "Lifecycle Status",
+      "kind": "custom",
+      "description": "A compact protocol dimension with a literal state value.",
+      "html": "<div class=\"ds-status\"><span>Definition</span><strong>COMPLETE · 8/8</strong></div>",
+      "css": ".ds-status { padding:1rem; border-block:1px solid #27313d; background:#090b0e; color:#edf3f8; } .ds-status span,.ds-status strong { display:block; } .ds-status span { color:#748191; font:700 .72rem/1.4 ui-monospace,monospace; letter-spacing:.05em; text-transform:uppercase; } .ds-status strong { margin-top:.15rem; color:#77deb2; font:700 .91rem/1.4 ui-monospace,monospace; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Inspectable Instrument",
+    "overview": "The interface treats the protocol as something a developer can inspect, traverse, and verify. Dark tonal layers create a quiet working surface while cyan marks only focus, links, and current position. Dense navigation and narrow prose keep the experience familiar to readers of open technical protocols.",
+    "keyCharacteristics": [
+      "Dark on first paint, with an explicit persistent light option.",
+      "Hairline structure and tonal layers instead of decorative depth.",
+      "A fixed desktop chapter rail and native mobile disclosure.",
+      "Source wayfinding beside every material protocol subject."
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Cyan identifies interaction, focus, and source wayfinding; it does not decorate passive regions.", "section": "colors" },
+      { "name": "The Technical Type Rule", "body": "Monospace communicates literal protocol data; it is never used as atmosphere.", "section": "typography" },
+      { "name": "The Flat Reading Rule", "body": "Static documentation regions use tone or a divider, never both a border and shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the complete documentation hierarchy usable without JavaScript.",
+      "Do attach protocol summaries to public canonical source links.",
+      "Do preserve visible keyboard focus and bounded reading measure."
+    ],
+    "donts": [
+      "Don't use glow, illustration, gradients, or promotional cards.",
+      "Don't imply Candidate source is published, certified, or operational.",
+      "Don't use cyan as ambient decoration."
+    ]
+  }
+}

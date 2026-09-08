@@ -1,0 +1,34 @@
+# Lico Arc Protocol
+
+> LicoArc is an implementation-neutral Candidate protocol definition for end-to-end encrypted messaging, independent device identity, reliable exchange, groups, and federation across untrusted Stations.
+
+Current line: licoarc.protocol-line.v1, Generation 1, Candidate. Definition status is COMPLETE across eight mandatory capabilities. New sessions are eligible; Protocol-Line publication is ineligible. Source and documentation publication does not establish implementation readiness, interoperability, certification, or deployment. Protocol source is licensed under Apache-2.0.
+
+An Endpoint owns keys, plaintext, peer acceptance, approvals, effects, and authenticated confirmations. A Station carries opaque protected packets and has no trust authority. A Network supplies an interoperability context. An independently key-holding isolated runtime is an Endpoint; agent workflow and tool permissions belong to the application.
+
+The website is an orientation layer. The public LicoArc repository owns normative meaning. The Markdown links below point directly to its maintained public sources.
+
+## Start here
+
+- [Documentation overview](https://licoarc.com/docs/): Reading path and authority map.
+- [Evaluating encrypted agent communication](https://licoarc.com/docs/#agent-communication): Identity, approvals, confirmations, and application responsibilities; no MCP or A2A interoperability claim.
+- [Protocol product boundary](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/PRODUCT.md): Product promise and current Candidate limits.
+- [Core vocabulary](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/CONTEXT.md): Endpoint, Station, Network, Group, and confirmation meanings.
+- [Current status](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/STATUS.md): Definition and verification facts separated from publication and runtime claims.
+
+## Capability definitions
+
+- [Foundation](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/protocols/foundation-v1.md): Encoding, bounds, closed registries, and content identity.
+- [Identity](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/protocols/identity-v1.md): Self-certifying authority, independent devices, management, and recovery.
+- [Pairwise protection](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/protocols/pairwise-protection-v1.md): Hybrid establishment, authentication, and protected records.
+- [Generic messaging](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/protocols/generic-messaging-v1.md): Namespaced application payloads and attachments.
+- [Reliable exchange](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/protocols/reliable-exchange-v1.md): Stable intent, bounded retries, authenticated confirmations, and recovery.
+- [HTTPS transport](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/protocols/https-transport-v1.md): HTTP/2 and TLS 1.3 carrier boundaries.
+- [Group collaboration](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/protocols/group-collaboration-v1.md): Membership, versioned state, per-member projections, and partial failure.
+- [Federation governance](https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/docs/protocols/federation-governance-v1.md): Threshold evidence, recovery, and final local admission.
+
+## Optional
+
+- [Verification guide](https://licoarc.com/docs/verification/): Source integrity, conformance corpora, formal model limits, and deterministic artifacts.
+- [Governance and license](https://licoarc.com/docs/governance/): Apache-2.0 and lifecycle boundaries.
+- [Canonical repository](https://github.com/LicoLand/LicoArc): Machine-readable sources and human-readable projections.
