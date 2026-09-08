@@ -1,0 +1,74 @@
+[
+  {
+    "title": "LicoArc encrypted messaging protocol",
+    "url": "/",
+    "summary": "Explore the LicoArc Candidate protocol for end-to-end encrypted messaging, independent device identity, reliable exchange, and federation across untrusted relays.",
+    "search": "licoarc home protocol boundary status generation 1 candidate complete eight capabilities canonical source encrypted messaging federation protocol agent communication independent device identity"
+  },
+  {
+    "title": "Documentation overview",
+    "url": "/docs/",
+    "summary": "Evaluate LicoArc for encrypted agent communication: Endpoint identity, message confirmations, application permissions, and the boundary with MCP and A2A.",
+    "search": "documentation overview read the protocol from boundary to bytes start with the three-entity model, follow the one exact protocol line, then inspect capability semantics and source verification. overview documentation endpoint station network eight capabilities canonical source encrypted agent communication isolated runtime tool permissions authenticated confirmations MCP A2A application integration"
+  },
+  {
+    "title": "Core concepts",
+    "url": "/docs/concepts/",
+    "summary": "Endpoints own protected meaning, Stations carry opaque data, and a Network supplies an interoperability context without becoming a trust root.",
+    "search": "core concepts three entities and one protected relationship endpoints own protected meaning, stations carry opaque data, and a network supplies an interoperability context without becoming a trust root. endpoint station network group domain model trust plaintext authority"
+  },
+  {
+    "title": "Protocol Line",
+    "url": "/docs/protocol-line/",
+    "summary": "The current line binds Generation 1, eight complete capabilities, the active protection profile, stable claims, and session rules into one content identity.",
+    "search": "protocol line one exact candidate protocol line the current line binds generation 1, eight complete capabilities, the active protection profile, stable claims, and session rules into one content identity. protocol line generation 1 candidate complete session eligible publication ineligible content identity"
+  },
+  {
+    "title": "Foundation",
+    "url": "/docs/foundation/",
+    "summary": "Foundation defines deterministic representations, field authority, lifecycle, bounds, source closure, and fail-closed parsing shared by all capabilities.",
+    "search": "foundation foundation: closed representations and registries foundation defines deterministic representations, field authority, lifecycle, bounds, source closure, and fail-closed parsing shared by all capabilities. foundation deterministic cbor canonical json registry fields bounds source manifest parsing"
+  },
+  {
+    "title": "Identity",
+    "url": "/docs/identity/",
+    "summary": "Identity defines self-certifying user authority, predecessor-bound transitions, independent Endpoint devices, recovery, private Routes, and transparency evidence.",
+    "search": "identity identity: user authority across independent endpoints identity defines self-certifying user authority, predecessor-bound transitions, independent endpoint devices, recovery, private routes, and transparency evidence. identity user authority endpoint device recovery route transparency trust peer"
+  },
+  {
+    "title": "Pairwise protection",
+    "url": "/docs/protection/",
+    "summary": "stable-core binds paired one-time prekeys, dual authentication, hybrid establishment, confirmation, and a bounded classic Double Ratchet.",
+    "search": "pairwise protection pairwise protection: one indivisible profile stable-core binds paired one-time prekeys, dual authentication, hybrid establishment, confirmation, and a bounded classic double ratchet. pairwise protection stable-core x25519 ml-kem-768 ed25519 ml-dsa-65 double ratchet"
+  },
+  {
+    "title": "Messaging & reliability",
+    "url": "/docs/messaging-reliable/",
+    "summary": "Generic Messaging defines protected records and attachments; Reliable Exchange preserves stable intent and advances finality only from authenticated Endpoint confirmation.",
+    "search": "messaging & reliability messaging and reliability: meaning beyond delivery generic messaging defines protected records and attachments; reliable exchange preserves stable intent and advances finality only from authenticated endpoint confirmation. generic messaging reliable exchange attachments endpoint confirmation retry idempotency payload"
+  },
+  {
+    "title": "HTTPS transport",
+    "url": "/docs/transport/",
+    "summary": "The Transport Profile fixes HTTP/2 over TLS 1.3 operations, resource accounting, retry outcomes, and residual metadata while carrying opaque protected packets.",
+    "search": "https transport https transport: a carrier without authority the transport profile fixes http/2 over tls 1.3 operations, resource accounting, retry outcomes, and residual metadata while carrying opaque protected packets. https transport http2 tls 1.3 station carrier submit claim settle metadata"
+  },
+  {
+    "title": "Groups & federation",
+    "url": "/docs/group-federation/",
+    "summary": "Group Collaboration defines protected per-member state; Federation Governance supplies threshold evidence while final Endpoint admission remains local.",
+    "search": "groups & federation groups and federation: bounded collaboration, local admission group collaboration defines protected per-member state; federation governance supplies threshold evidence while final endpoint admission remains local. group collaboration federation governance threshold membership equivocation local admission"
+  },
+  {
+    "title": "Verification",
+    "url": "/docs/verification/",
+    "summary": "Source manifests, schemas, corpora, formal bindings, content identities, and deterministic artifacts verify one tracked Candidate definition.",
+    "search": "verification verification closes the definition, not the world source manifests, schemas, corpora, formal bindings, content identities, and deterministic artifacts verify one tracked candidate definition. verification conformance corpus source integrity artifacts proofs schemas deterministic"
+  },
+  {
+    "title": "Governance & license",
+    "url": "/docs/governance/",
+    "summary": "LicoArc source is available under Apache-2.0; protocol publication and federation governance remain separately controlled lifecycle concerns.",
+    "search": "governance & license governance and license licoarc source is available under apache-2.0; protocol publication and federation governance remain separately controlled lifecycle concerns. governance license apache 2.0 publication candidate source contribution"
+  }
+]
