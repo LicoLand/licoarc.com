@@ -1,206 +1,219 @@
 ---
-name: Lico Arc Protocol Documentation
-description: A precise dark reading surface for an inspectable protocol definition.
+name: Lico Arc — Signal in Space
+description: A spatial identity for an open protocol, carried from an immersive introduction into precise documentation.
 colors:
-  canvas: "#090b0e"
-  navigation: "#0d1015"
-  surface: "#11161d"
-  surface-strong: "#161d26"
-  text: "#edf3f8"
-  muted: "#9eabb9"
-  faint: "#748191"
-  line: "#27313d"
-  accent: "#67d6ff"
-  accent-strong: "#9ae5ff"
-  accent-soft: "#102a35"
-  positive: "#77deb2"
-  caution: "#f3c969"
-  action-ink: "#061017"
-  search-shadow: "rgba(0, 0, 0, 0.35)"
+  canvas: "#101210"
+  surface: "#181b17"
+  surface-strong: "#242922"
+  text: "#eff0e9"
+  muted: "#a7ada1"
+  faint: "#969e8f"
+  line: "#343a30"
+  accent: "#d5f478"
+  accent-strong: "#e5ff9c"
+  accent-soft: "#25321a"
+  caution: "#e8c18a"
+  action-ink: "#17200d"
+  light-canvas: "#f0f1e9"
+  light-surface: "#e6e8df"
+  light-text: "#172010"
+  light-muted: "#525e49"
+  light-accent: "#365a13"
 typography:
   display:
-    fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "clamp(2.35rem, 6vw, 4.9rem)"
-    fontWeight: 720
-    lineHeight: 1.03
-    letterSpacing: "-0.025em"
+    fontFamily: "Manrope, sans-serif"
+    fontSize: "clamp(4.5rem, 9.4vw, 9.5rem)"
+    fontWeight: 420
+    lineHeight: 1.04
+    letterSpacing: "-0.04em"
   headline:
-    fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "1.65rem"
-    fontWeight: 720
-    lineHeight: 1.2
-    letterSpacing: "-0.025em"
+    fontFamily: "Manrope, sans-serif"
+    fontSize: "clamp(2.25rem, 4.25vw, 4.6rem)"
+    fontWeight: 450
+    lineHeight: 1.12
+    letterSpacing: "-0.04em"
   document-display:
-    fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "clamp(2.1rem, 5vw, 3.55rem)"
-    fontWeight: 720
+    fontFamily: "Manrope, sans-serif"
+    fontSize: "clamp(2.5rem, 4.8vw, 4.8rem)"
+    fontWeight: 450
     lineHeight: 1.1
-    letterSpacing: "-0.025em"
-  lead:
-    fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "1.16rem"
-    fontWeight: 400
-    lineHeight: 1.7
+    letterSpacing: "-0.04em"
   body:
-    fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontFamily: "Manrope, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.7
+    lineHeight: 1.75
+  lead:
+    fontFamily: "Manrope, sans-serif"
+    fontSize: "1.12rem"
+    fontWeight: 400
+    lineHeight: 1.8
   label:
-    fontFamily: "ui-monospace, SFMono-Regular, Consolas, monospace"
-    fontSize: "0.72rem"
-    fontWeight: 700
-    lineHeight: 1.4
-    letterSpacing: "0.05em"
-  metadata:
-    fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "0.82rem"
+    fontFamily: "Manrope, sans-serif"
+    fontSize: "0.8rem"
     fontWeight: 400
-    lineHeight: 1.45
-  small:
-    fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-    fontSize: "0.9rem"
+    lineHeight: 1.75
+  data:
+    fontFamily: "Plex Mono, monospace"
+    fontSize: "0.95rem"
     fontWeight: 400
-    lineHeight: 1.55
+    lineHeight: 1.6
 rounded:
-  code: "0.25rem"
-  control: "0.45rem"
-  surface: "0.625rem"
+  control: "0.2rem"
+  action: "3px"
+  orbit: "50%"
 spacing:
-  compact: "0.5rem"
-  control: "0.75rem"
-  section: "3.6rem"
+  gutter: "clamp(1.5rem, 4vw, 5rem)"
+  section: "8.5rem"
+  section-mobile: "4.5rem"
+  group: "2rem"
 components:
   button-primary:
     backgroundColor: "{colors.accent}"
-    textColor: "#061017"
-    rounded: "{rounded.control}"
-    padding: "0.55rem 0.9rem"
-    height: "2.65rem"
+    textColor: "{colors.action-ink}"
+    rounded: "{rounded.action}"
+    height: "3.8rem"
+    padding: "0.3rem 0.3rem 0.3rem 1.5rem"
   button-quiet:
-    backgroundColor: "{colors.surface}"
+    backgroundColor: "transparent"
     textColor: "{colors.text}"
     rounded: "{rounded.control}"
-    padding: "0.45rem 0.7rem"
-    height: "2.35rem"
-  search-field:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.text}"
-    rounded: "{rounded.surface}"
-    padding: "0 2.75rem 0 0.9rem"
-    height: "2.5rem"
+    height: "2.75rem"
+    padding: "0.5rem 0.9rem"
 ---
 
-# Design System: Lico Arc Protocol Documentation
+# Design System: Lico Arc — Signal in Space
 
 ## Overview
 
-**Creative North Star: "The Inspectable Instrument"**
+**Creative North Star: "Signal in Space"**
 
-The interface treats the protocol as something a developer can inspect,
-traverse, and verify. Dark tonal layers create a quiet working surface while
-cyan marks only focus, links, and current position. Dense navigation and narrow
-prose keep the experience familiar to readers of open technical protocols.
+The identity pairs monumental typography with a precise, dimensional signal
+sculpture. Carbon surfaces, silver filaments, open circular geometry, and a
+single acid-green signal connect the introductory experience to the reading
+surface. The same material and typography continue through every chapter.
+
+The homepage introduces the protocol through space and movement. Documentation
+uses the same system at a quieter scale, with a fixed reading measure and
+persistent source wayfinding. Product claims remain governed by PRODUCT.md.
 
 **Key Characteristics:**
 
-- Dark on first paint, with an explicit persistent light option.
-- Hairline structure and tonal layers instead of decorative depth.
-- A fixed desktop chapter rail and native mobile disclosure.
-- Source wayfinding beside every material protocol subject.
+- A geometric typeface across display, navigation, and reading.
+- Original parametric geometry with real depth and controlled movement.
+- Large shifts in scale and density between sections.
+- Dark first paint and an explicitly selected persistent light theme.
+- Complete document navigation without scripting.
 
 ## Colors
 
-The palette uses cool near-black neutral layers and one cyan interaction voice.
-Positive and caution colors appear only in lifecycle state.
+Carbon and silver establish the neutral field. Acid green identifies the
+signal, primary action, current chapter, focus, and complete definition state.
+Amber is reserved for publication ineligibility. The light theme translates the
+same relationships into pale mineral surfaces and deep green interaction.
 
-| Runtime token | Dark | Light |
-| --- | --- | --- |
-| Canvas | `#090b0e` | `#f6f8fa` |
-| Navigation | `#0d1015` | `#ffffff` |
-| Surface | `#11161d` | `#ffffff` |
-| Strong surface / code | `#161d26` / `#0b0f14` | `#eef2f5` |
-| Text | `#edf3f8` | `#15202b` |
-| Muted / faint | `#9eabb9` / `#748191` | `#526171` / `#5f7080` |
-| Divider | `#27313d` | `#d5dde5` |
-| Accent / strong | `#67d6ff` / `#9ae5ff` | `#006d91` / `#005a79` |
-| Accent surface | `#102a35` | `#dff4fb` |
-| Positive / caution | `#77deb2` / `#f3c969` | `#087a50` / `#7c5800` |
-| Selection | `#17465a` | `#b8eafa` |
-
-**The One Signal Rule.** Cyan identifies interaction, focus, and source
-wayfinding; it does not decorate passive regions.
+**The Signal Rule.** Accent belongs to meaning and interaction. Keep the
+sculpture predominantly silver so its moving accent remains distinguishable.
 
 ## Typography
 
-One system sans stack carries reading and interface hierarchy. Monospace is
-reserved for protocol identifiers, code, status values, and compact labels.
-Body copy measures no more than 72 characters and uses a 1.7 line height.
+Manrope is the display and reading voice. Plex Mono identifies literal protocol
+data, code, capability index, and the ordered message demonstration. Both fonts
+load from Fontsource packages pinned to version 5.3.0 on jsDelivr. Their OFL
+notices remain in `public/assets/fonts/`. Font display uses swap to keep text
+available while the fonts load.
 
-**The Technical Type Rule.** Monospace communicates literal protocol data; it
-is never used as atmosphere.
+Oversized, regular-weight display type is an explicit part of the identity.
+Documentation scales down to a comfortable hierarchy and a maximum 70ch
+reading measure. Display tracking stops at -0.04em. Supporting headings use
+muted color to create a second reading beat without introducing another face.
+
+**The Reading Rule.** Motion never makes the opening statement unavailable.
+The title remains legible throughout its short translation and opacity entrance.
 
 ## Layout
 
-The content container is at most 90rem wide. Desktop uses a 15.5rem sticky
-chapter rail beside a centered 72ch article, under a compact sticky header.
-At 820px and below the rail becomes a native details disclosure and the search
-field takes a full row. At 480px the lifecycle strip and pager stack. Tables
-and code scroll inside their own regions and never widen the page.
+The page uses fluid outer gutters. The introduction gives the left side to the
+statement and the right side to the signal sculpture. Broad two-column section
+introductions lead to a diagram, capability rows, an orbit composition, and a
+source record. Each section has its own density inside a shared spatial rhythm.
+
+At 900px, the primary navigation becomes a native disclosure and the diagram
+stacks over its three controls. At 600px, search takes a dedicated header row,
+the sculpture follows the primary action, the controls stack vertically, and
+the document chapter rail becomes a native disclosure. Data tables and code
+scroll within their own boundaries.
+
+Documentation keeps a 14rem chapter rail, a bounded article, breadcrumbs,
+previous/next links, and a thin reading-progress line. The mobile header is in
+the document flow to preserve vertical reading space.
 
 ## Elevation & Depth
 
-The reading surface is flat by default. Background, navigation, surface, and
-strong-surface tones establish depth with one-pixel dividers. Only the open
-search result panel uses a soft downward shadow because it floats above the
-document.
+Section depth comes from tonal surfaces and hairline rules. The search panel
+uses a downward shadow because it floats above document content. The main
+visual derives depth from a projected parametric surface, surface occlusion,
+normal-based lighting, and separately drawn filaments.
 
-**The Flat Reading Rule.** Static documentation regions use tone or a divider,
-never both a border and shadow.
+**The Physical Depth Rule.** Use actual geometric depth for the signature
+visual; ordinary controls remain flat and clearly readable.
 
 ## Shapes
 
-Controls use compact 0.45rem corners. Search, callouts, tables, and disclosure
-surfaces use 0.625rem corners. The circular LA mark is the single geometric
-exception. Pills do not appear.
+The open arc mark, the filament sculpture, endpoint circles, orbit geometry,
+and circular direction controls form one family. Primary actions use compact
+corners and a separate arrow compartment. Documentation uses flat rows,
+hairlines, and tonal callouts rather than decorative containers.
 
 ## Components
 
-### Buttons
+### Navigation and search
 
-Primary actions use the cyan accent with dark text. Quiet and source actions
-use a charcoal surface and one-pixel divider. Hover shifts tone; every control
-uses the shared three-pixel cyan focus ring.
+The shared header includes product identity, the protocol, capabilities,
+documentation, search, theme switching, and the public repository. Mobile
+navigation uses native details/summary. Search retains a slash shortcut,
+keyboard result navigation, announced loading/empty/error states, and Escape
+dismissal. Results are source-linked local content, with no external service.
 
-### Inputs / Fields
+### Actions
 
-The search field is 2.5rem high on a raised charcoal surface. Placeholder text
-uses the faint neutral. Results open directly below, announce their count, and
-keep the same focus language.
+Primary actions use the signal color. The arrow moves a few pixels on hover;
+secondary source links use a diagonal arrow. Focus uses a two-pixel accent
+outline with an offset, shared across controls and links.
 
-### Navigation
+### Signal field
 
-Desktop navigation is a sticky chapter rail with muted links and one cyan-tint
-current row. Mobile navigation is a native disclosure whose summary includes
-the current chapter. Breadcrumbs and previous/next links preserve position in
-both layouts.
+The original surface is parameterized into 320 segments and 88 strands. Static
+geometry is uploaded once and rendered in two batched draws: a surface pass
+and a filament pass. Pointer position, scroll, time, and theme arrive as
+uniforms. Pixel density is capped at 1.75. The field stops when offscreen or
+when its document is hidden, and resumes on return.
 
-### Status strip
+The motion control persists the visitor's preference. Reduced-motion preference
+always takes precedence. A static vector projection is available before
+scripting, when WebGL is unavailable, and during context loss.
 
-Four equal data cells separate protocol, lifecycle, definition, and
-publication. Monospace values keep the dimensions distinct; green is reserved
-for complete definition state and amber for publication ineligibility.
+### Message demonstration
+
+Three buttons select protection, carriage, and confirmation. Endpoint emphasis
+and the moving protected record track the selected stage. Arrow keys move
+between stages. All explanatory text remains visible, including without
+JavaScript. The diagram is explicitly labeled as conceptual.
+
+### Capability and source records
+
+Eight generous link rows combine the capability title, its existing factual
+summary, and source navigation. Hover introduces a tonal sweep and rotates the
+arrow. The lifecycle record keeps protocol, lifecycle, definition, and
+publication as separate values. Current chapter and source links use the same
+signal color as the introductory action.
 
 ## Do's and Don'ts
 
-### Do:
-
-- **Do** keep the complete documentation hierarchy usable without JavaScript.
-- **Do** attach protocol summaries to public canonical source links.
-- **Do** preserve visible keyboard focus and bounded reading measure.
-
-### Don't:
-
-- **Don't** use glow, illustration, gradients, or promotional cards.
-- **Don't** imply Candidate source is published, certified, or operational.
-- **Don't** use cyan as ambient decoration.
+- **Do** keep public protocol facts and canonical source links intact.
+- **Do** give the signal, typography, and content room to establish hierarchy.
+- **Do** maintain an equivalent static, keyboard, and reduced-motion experience.
+- **Do** share typography, colors, focus, and navigation across all routes.
+- **Don't** convert a conceptual animation into a claim of runtime operation.
+- **Don't** hide navigation or the introductory statement behind loading effects.
+- **Don't** turn every reading component into an animated promotional panel.
