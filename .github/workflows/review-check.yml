@@ -1,45 +1,51 @@
 name: Review check
-
 on:
   push:
     branches: ["feature/nostr-layered-v1-20260926"]
   pull_request:
     branches: ["main"]
-
 permissions:
   contents: read
-
 concurrency:
   group: review-check-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   review:
-    name: Website source validation
+    name: Generated documentation review
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
-          node-version: "24"
-      - name: Record exact review source
-        run: |
-          mkdir -p /tmp/licoarc-site-review
-          git rev-parse HEAD > /tmp/licoarc-site-review/commit.txt
-          git archive --format=tar HEAD > /tmp/licoarc-site-review/source.tar
-          sha256sum /tmp/licoarc-site-review/source.tar > /tmp/licoarc-site-review/source.sha256
-      - name: Retain review source
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+          python-version: "3.12"
+      - name: Resolve one source snapshot
+        id: source
+        run: python tools/resolve_source.py --mode preview --output "$GITHUB_OUTPUT"
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          name: website-source
-          path: /tmp/licoarc-site-review/
-          retention-days: 7
-      - name: Verify site
-        run: node tools/verify-site.mjs
-      - name: Verify pinned protocol source
-        run: node tools/verify-protocol-source.mjs
-      - name: Verify version governance
+          repository: LicoLand/LicoArc
+          ref: ${{ steps.source.outputs.revision }}
+          path: .protocol-source
+          persist-credentials: false
+      - name: Install locked documentation tools
+        run: python -m pip install -r requirements.lock
+      - name: Test the publishing contract
+        run: python -m unittest discover -s tests -v
+      - name: Build and check generated documentation
+        run: python tools/docs_build.py --source .protocol-source --revision '${{ steps.source.outputs.revision }}' --preview
+      - name: Verify site is reproducible
+        run: python tools/check_reproducible.py --source .protocol-source --revision '${{ steps.source.outputs.revision }}' --preview
+      - name: Verify repository version governance
         run: tools/release/verify-version-governance verify
+      - name: Record renderer/source provenance
+        run: |
+          git rev-parse HEAD > site/renderer-commit.txt
+          git -C .protocol-source rev-parse HEAD > site/protocol-commit.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: documentation-preview
+          path: site/
+          retention-days: 14
