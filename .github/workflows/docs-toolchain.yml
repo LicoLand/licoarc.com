@@ -1,0 +1,20 @@
+name: Documentation toolchain
+on:
+  push:
+    branches: ["feature/nostr-layered-v1-20260926"]
+    paths: [".github/workflows/docs-toolchain.yml"]
+permissions:
+  contents: read
+jobs:
+  toolchain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download pinned static documentation builder
+        run: |
+          python3 -m pip download --only-binary=:all: --dest /tmp/docs-wheels mkdocs==1.6.1
+          sha256sum /tmp/docs-wheels/* > /tmp/docs-wheels/SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: docs-toolchain
+          path: /tmp/docs-wheels/
+          retention-days: 7
