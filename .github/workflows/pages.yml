@@ -23,6 +23,8 @@ jobs:
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
       - name: Verify static candidate
         run: node tools/verify-site.mjs
+      - name: Verify pinned protocol source
+        run: node tools/verify-protocol-source.mjs
       - name: Upload public artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
