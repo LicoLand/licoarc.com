@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ page.meta.language if page else 'en' }}" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title|e if page else 'Not found' }} — {{ config.site_name|e }}</title>
+<meta name="description" content="{{ page.meta.description|e if page else config.site_description|e }}">
+{% if page %}<meta property="og:type" content="article"><meta property="og:title" content="{{ page.title|e }} — {{ config.site_name|e }}"><meta property="og:description" content="{{ page.meta.description|e }}"><meta property="og:url" content="{{ page.canonical_url|e }}">{% endif %}
+{% if page %}<link rel="canonical" href="{{ page.canonical_url|e }}">{% endif %}
+{% if page and page.meta.preview %}<meta name="robots" content="noindex,nofollow">{% endif %}
+<link rel="icon" href="/favicon.svg"><link rel="describedby" href="/llms.txt">
+<link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/site.js" defer></script>
+</head><body class="doc">
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a aria-label="Lico Arc Protocol home" class="brand" href="/"><svg aria-hidden="true" class="brand-mark" viewBox="0 0 32 32"><path d="M26 8A13 13 0 1 0 26 24M22 12a7 7 0 1 0 0 8M15 16h15"></path></svg><span class="brand-text">licoarc<span class="brand-dot">.</span></span></a>
+<nav aria-label="Main" class="header-links"><a href="/docs/">Protocol</a><a href="/reference/status/">Definition</a><a href="/docs/">Documentation</a></nav>
+<form class="search" data-search="" role="search"><label for="site-search">Search documentation</label><svg aria-hidden="true" class="search-icon" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input autocomplete="off" id="site-search" placeholder="Search the protocol" type="search"/><span aria-hidden="true" class="search-hint">/</span><div class="search-panel" data-search-panel="" hidden=""><p aria-live="polite" class="search-status" data-search-status="">Type a title, heading, or protocol term.</p><ul class="search-results" data-search-results=""></ul></div></form>
+<div class="header-actions"><button aria-label="Use light theme" aria-pressed="false" class="theme-toggle quiet-button" data-theme-toggle="" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"></path></svg><span class="sr-only" data-theme-label="">Light</span></button><a class="source-button" href="https://github.com/LicoLand/LicoArc">GitHub <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"></path></svg></a></div>
+<details class="site-menu"><summary aria-label="Open navigation"><span></span><span></span></summary><nav aria-label="Mobile main"><a href="/docs/">Protocol</a><a href="/reference/status/">Definition</a><a href="/docs/">Documentation</a><a href="https://github.com/LicoLand/LicoArc">GitHub</a></nav></details>
+</div></header>
+{% macro navigation(items) %}
+<ol>{% for item in items %}<li>{% if item.children %}<details {% if item.active %}open{% endif %}><summary>{{ item.title|e }}</summary>{{ navigation(item.children) }}</details>{% else %}<a href="{{ item.url|url }}" {% if item.active %}aria-current="page"{% endif %}>{{ item.title|e }}</a>{% endif %}</li>{% endfor %}</ol>
+{% endmacro %}
+<div class="page">
+<nav class="rail" aria-label="Documentation"><p class="rail-title">Documentation</p>{{ navigation(nav) }}</nav>
+<main class="article" id="content">
+<details class="mobile-nav"><summary>Browse documentation</summary>{{ navigation(nav) }}</details>
+{% if page %}
+<div class="doc-meta"><span>{{ page.meta.document_kind|e }}</span><a href="/reference/status/">{{ page.meta.lifecycle|e }} / {{ page.meta.definition_status|e }}</a></div>
+{% if page.meta.preview %}<p class="preview-label">Documentation preview — not the published website</p>{% endif %}
+<div class="source-note"><span>SOURCE</span><a href="{{ page.meta.source_url|e }}">{{ page.file.src_uri|e }}</a><span>{{ page.meta.revision[:12]|e }}</span></div>
+{% if page.toc|length %}<details class="page-toc"><summary>On this page</summary><ul>{% for section in page.toc %}<li><a href="{{ section.url }}">{{ section.title|striptags|e }}</a>{% if section.children %}<ul>{% for child in section.children %}<li><a href="{{ child.url }}">{{ child.title|striptags|e }}</a></li>{% endfor %}</ul>{% endif %}</li>{% endfor %}</ul></details>{% endif %}
+{{ page.content }}
+<nav class="pager" aria-label="Chapter navigation">{% if page.previous_page %}<a href="{{ page.previous_page.url|url }}"><span>Previous</span>{{ page.previous_page.title|e }}</a>{% endif %}{% if page.next_page %}<a class="next" href="{{ page.next_page.url|url }}"><span>Next</span>{{ page.next_page.title|e }}</a>{% endif %}</nav>
+{% else %}<h1>Page not found</h1><p><a href="/docs/">Browse the documentation</a> or search above.</p>{% endif %}
+</main></div>
+<footer class="site-footer"><div class="footer-inner"><a class="footer-brand" href="/">licoarc.</a><span>Generated from protocol sources</span><a href="/reference/license/">Apache-2.0</a><a href="/provenance.json">Build source</a><a href="/CONTRIBUTING/">Contribute</a></div></footer>
+</body></html>

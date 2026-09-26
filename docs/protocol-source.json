@@ -1,6 +1,10 @@
 {
+  "format": "licoarc.documentation-source.v1",
   "repository": "LicoLand/LicoArc",
-  "revision": "802a023cc0e02e78fcb52780311e3236bc75af90",
-  "bindingId": "ca1d16a9edaa934abdf91e92dc3e0ee970f813b664e4519eb90d3eb0ca49606a",
-  "path": "spec/interop/v1/protocol.md"
+  "public": {
+    "ref": "release"
+  },
+  "preview": {
+    "revision": "e1c8db17be99640412abb51140470ad054ca2ba4"
+  }
 }

@@ -1,0 +1,24 @@
+/* Documentation layout additions; original brand assets and visual tokens stay intact. */
+.doc-meta { display:flex; flex-wrap:wrap; gap: .75rem; margin:1rem 0; font-size:.78rem; }
+.doc-meta span { font-weight:600; }
+.preview-label { border-left:3px solid currentColor; padding:.5rem 1rem; font-size:.85rem; }
+.rail details summary { padding:.65rem 0; cursor:pointer; font-weight:600; }
+.rail details ol { margin-left:.45rem; }
+.article, .page, .page-toc, .source-note { min-width:0; }
+.article pre { max-width:100%; overflow:auto; padding:1rem; border:1px solid var(--line); border-radius:.4rem; }
+.article pre code { white-space:pre; overflow-wrap:normal; word-break:normal; }
+.article code, .source-note a { overflow-wrap:anywhere; }
+.article .table-wrap { max-width:100%; overflow:auto; }
+.page-toc { margin:1rem 0 2rem; padding:.75rem 1rem; border:1px solid var(--line); }
+.page-toc summary { cursor:pointer; }
+.page-toc ul { margin-top:.5rem; }
+.headerlink { font-size:.65em; margin-left:.45em; opacity:0; }
+h1:hover .headerlink,h2:hover .headerlink,h3:hover .headerlink,.headerlink:focus { opacity:1; }
+.mobile-nav ol { list-style:none; padding-left:1rem; }
+@media(max-width:760px) { .source-note { flex-wrap:wrap; } .article table { min-width:38rem; } }
+@media print { .site-header,.rail,.mobile-nav,.pager,.site-footer,.page-toc {display:none;} .page {display:block;} .article {max-width:100%;padding:0;} .article pre,.table-wrap {overflow:visible;} }
+
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+:root { --mono: ui-monospace, "SFMono-Regular", Consolas, monospace; }
+
+.article { overflow-wrap:anywhere; }
