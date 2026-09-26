@@ -86,6 +86,8 @@ jobs:
           path: /tmp/site-verify.log
           if-no-files-found: ignore
           retention-days: 7
+      - name: Leave workflow edits to the authorized repository writer
+        run: git restore --source=HEAD -- .github/workflows/pages.yml .github/workflows/review-check.yml
       - name: Commit verified website to the same feature branch
         env:
           GH_TOKEN: ${{ github.token }}
