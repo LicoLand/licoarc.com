@@ -1,0 +1,101 @@
+name: Assemble reviewed static documentation publisher
+on:
+  push:
+    branches: ["feature/nostr-layered-v1-20260926"]
+    paths: [".github/docs-review/**", ".github/workflows/assemble-docs.yml"]
+permissions:
+  contents: read
+jobs:
+  assemble:
+    if: github.repository == 'LicoLand/licoarc.com' && github.ref == 'refs/heads/feature/nostr-layered-v1-20260926'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Apply exact-source publisher edits
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor 01facc843152f781279ab159817ea7187aced23c HEAD
+          git diff --quiet 01facc843152f781279ab159817ea7187aced23c HEAD -- . ':(exclude).github/docs-review/**' ':(exclude).github/workflows/assemble-docs.yml'
+          python3 - <<'PY'
+          import base64, hashlib, json, lzma
+          from pathlib import Path, PurePosixPath
+          encoded=''.join(Path(f'.github/docs-review/part-{i:02d}.b64').read_text().strip() for i in range(3))
+          assert len(encoded)==24956
+          raw=lzma.decompress(base64.b64decode(encoded,validate=True))
+          assert len(raw)==62416 and hashlib.sha256(raw).hexdigest()=='6c563496a5a7019bdcdfa9829b7c4c4bc0286078e533bb6388f760fa6ba2c970'
+          patch=json.loads(raw)
+          assert patch['format']=='licoarc.reviewed-doc-edits.v1' and patch['base']=='01facc843152f781279ab159817ea7187aced23c'
+          assert len(patch['files'])==52
+          def safe(n):
+              p=Path(n);r=PurePosixPath(n)
+              assert not r.is_absolute() and str(r)==n and not any(x in ('..','.git') for x in r.parts)
+              assert not n.startswith('.github/workflows/')
+              assert not p.is_symlink() and not any(x.is_symlink() for x in p.parents)
+              return p
+          prepared=[];seen=set()
+          for e in patch['files']:
+              n=e['path'];p=safe(n)
+              assert n not in seen;seen.add(n)
+              before=p.read_bytes() if p.exists() else None
+              assert (hashlib.sha256(before).hexdigest() if before is not None else None)==e['before'],n
+              if e.get('delete'):
+                  assert e['after'] is None;prepared.append((p,None));continue
+              if 'copy' in e:
+                  after=safe(e['copy']).read_bytes()
+              else:
+                  lines=(before or b'').decode().splitlines(keepends=True);end=0
+                  for i,j,added in e['edits']:
+                      assert end<=i<=j<=len(lines) and all(isinstance(x,str) for x in added);end=j
+                  for i,j,added in reversed(e['edits']):lines[i:j]=added
+                  after=''.join(lines).encode()
+              assert hashlib.sha256(after).hexdigest()==e['after'],n
+              prepared.append((p,after))
+          for p,data in prepared:
+              if data is None:p.unlink()
+              else:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+          print('Applied 52 verified publisher edits')
+          PY
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          repository: LicoLand/LicoArc
+          ref: e1c8db17be99640412abb51140470ad054ca2ba4
+          path: .protocol-source
+          persist-credentials: false
+      - name: Install locked documentation tools
+        run: python -m pip install -r requirements.lock
+      - name: Test and build exact protocol snapshot
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -v
+          python tools/docs_build.py --source .protocol-source --revision e1c8db17be99640412abb51140470ad054ca2ba4 --preview
+          python tools/check_reproducible.py --source .protocol-source --revision e1c8db17be99640412abb51140470ad054ca2ba4 --preview
+          tools/release/verify-version-governance verify
+          git diff --check
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: documentation-preview
+          path: site/
+          retention-days: 14
+      - name: Commit checked publisher sources to the review branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch=feature/nostr-layered-v1-20260926
+          auth="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          remote_sha="$(git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" ls-remote origin "refs/heads/$branch" | cut -f1)"
+          test "$remote_sha" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'build: generate protocol website from single-source Markdown and manifests'
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin "HEAD:refs/heads/$branch"
