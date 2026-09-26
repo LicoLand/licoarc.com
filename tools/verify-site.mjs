@@ -12,6 +12,7 @@ const routes = [
   "/docs/group-federation/", "/docs/verification/", "/docs/governance/"
 ];
 const failures = [];
+const pin = JSON.parse(await readFile(join(repositoryRoot, "docs/protocol-source.json"), "utf8"));
 
 const fail = (message) => failures.push(message);
 const routeFile = (route) => route === "/"
@@ -57,7 +58,7 @@ for (const route of routes) {
     if (!/Skip to content/.test(html) || !/id="content"/.test(html)) fail(route + " lacks skip navigation");
     if (!/data-theme-toggle/.test(html) || !/aria-pressed=/.test(html)) fail(route + " lacks accessible theme control");
     if (!/data-search-status aria-live="polite"/.test(html)) fail(route + " lacks live search status");
-    if (!/https:\/\/github\.com\/LicoLand\/LicoArc\/blob\/release\//.test(html)) fail(route + " lacks release-branch canonical-source wayfinding");
+    if (!html.includes("https://github.com/LicoLand/LicoArc/blob/" + pin.revision + "/")) fail(route + " lacks pinned canonical-source wayfinding");
     if (route !== "/" && !/aria-current="page"/.test(html)) fail(route + " lacks current-section state");
     if (route !== "/" && !/class="pager"/.test(html)) fail(route + " lacks previous/next wayfinding");
   } catch {
@@ -132,7 +133,7 @@ if (!/^User-agent: \*$/m.test(robots) || !/^Allow: \/$/m.test(robots) ||
 
 const llms = await readFile(join(publicRoot, "llms.txt"), "utf8");
 const llmsLinks = [...llms.matchAll(/\[[^\]]+\]\((https:\/\/[^)]+)\)/g)].map((match) => match[1]);
-const canonicalSourcePrefix = "https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/";
+const canonicalSourcePrefix = "https://raw.githubusercontent.com/LicoLand/LicoArc/" + pin.revision + "/";
 if (!llms.startsWith("# Lico Arc Protocol\n") || !llmsLinks.includes("https://licoarc.com/docs/#agent-communication") ||
     llmsLinks.filter((value) => value.startsWith(canonicalSourcePrefix)).length < 11) {
   fail("llms.txt lacks the documentation entry point or canonical Markdown source map");
@@ -159,7 +160,7 @@ if (!/pages: write/.test(workflow) || !/id-token: write/.test(workflow) || !/con
   fail("Pages workflow permissions are incomplete");
 }
 
-const requiredClaims = ["Generation 1", "Candidate", "COMPLETE", "publication ineligible"];
+const requiredClaims = ["Generation 1", "Candidate", "PARTIAL", "publication ineligible", "proof requalification", "without rebinding"];
 const allHtml = [...htmlByRoute.values()].join("\n");
 for (const claim of requiredClaims) {
   if (!allHtml.toLowerCase().includes(claim.toLowerCase())) fail("required lifecycle claim missing: " + claim);
@@ -168,7 +169,7 @@ for (const forbidden of ["stable protocol line", "certified implementation", "pu
   if (allHtml.toLowerCase().includes(forbidden)) fail("forbidden public claim present: " + forbidden);
 }
 
-const pin = JSON.parse(await readFile(join(repositoryRoot, "docs/protocol-source.json"), "utf8"));
+
 if (pin.repository !== "LicoLand/LicoArc" || (!/^[0-9a-f]{40}$/.test(pin.revision) || /^0{40}$/.test(pin.revision)) ||
     !/^[0-9a-f]{64}$/.test(pin.bindingId) || pin.path !== "spec/interop/v1/protocol.md") {
   fail("Nostr binding source pin is invalid");
@@ -186,6 +187,10 @@ for (const [route, html] of htmlByRoute) {
   if (!html.includes('href="/docs/nostr-interoperability/"')) fail(route + " does not expose interoperability guidance");
 }
 
+for (const [route, html] of htmlByRoute) {
+  if (route !== "/" && (!html.includes("new-session eligibility is false") || !html.includes("PARTIAL"))) fail(route + " omits current security admission boundary");
+  if (/COMPLETE · 8\/8|eight complete mandatory|Freeze both binding|600-second pairing|one fixed storage window/i.test(html)) fail(route + " retains superseded lifecycle constraints");
+}
 if (failures.length) {
   console.error("site verification failed (" + failures.length + ")");
   for (const failure of failures) console.error("- " + failure);
