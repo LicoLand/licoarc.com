@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const publicRoot = join(repositoryRoot, "public");
 const routes = [
-  "/", "/docs/", "/docs/concepts/", "/docs/protocol-line/",
+  "/", "/docs/", "/docs/nostr-interoperability/", "/docs/concepts/", "/docs/protocol-line/",
   "/docs/foundation/", "/docs/identity/", "/docs/protection/",
   "/docs/messaging-reliable/", "/docs/transport/",
   "/docs/group-federation/", "/docs/verification/", "/docs/governance/"
@@ -90,7 +90,7 @@ for (const route of routes.slice(1)) {
 
 try {
   const index = JSON.parse(await readFile(join(publicRoot, "search-index.json"), "utf8"));
-  if (!Array.isArray(index) || index.length !== routes.length) fail("search index must contain exactly twelve entries");
+  if (!Array.isArray(index) || index.length !== routes.length) fail("search index must contain exactly one entry per route");
   for (const route of routes) {
     const matches = index.filter((entry) => entry.url === route);
     if (matches.length !== 1) fail("search index route coverage is not exactly once: " + route);
@@ -168,10 +168,28 @@ for (const forbidden of ["stable protocol line", "certified implementation", "pu
   if (allHtml.toLowerCase().includes(forbidden)) fail("forbidden public claim present: " + forbidden);
 }
 
+const pin = JSON.parse(await readFile(join(repositoryRoot, "docs/protocol-source.json"), "utf8"));
+if (pin.repository !== "LicoLand/LicoArc" || (!/^[0-9a-f]{40}$/.test(pin.revision) || /^0{40}$/.test(pin.revision)) ||
+    !/^[0-9a-f]{64}$/.test(pin.bindingId) || pin.path !== "spec/interop/v1/protocol.md") {
+  fail("Nostr binding source pin is invalid");
+}
+const bindingPage = htmlByRoute.get("/docs/nostr-interoperability/") ?? "";
+const pinnedSource = "https://github.com/" + pin.repository + "/blob/" + pin.revision + "/" + pin.path;
+if (!bindingPage.includes(pinnedSource) || !bindingPage.includes(pin.bindingId)) fail("binding page does not match its source pin");
+if (!llms.includes("https://raw.githubusercontent.com/" + pin.repository + "/" + pin.revision + "/" + pin.path)) {
+  fail("llms.txt does not expose the exact binding source");
+}
+for (const required of ["NIP-17", "NIP-44 v2", "NIP-59", "44900", "experimental", "unallocated", "never silently", "not production cryptography"]) {
+  if (!bindingPage.includes(required)) fail("binding page lacks scope or safety fact: " + required);
+}
+for (const [route, html] of htmlByRoute) {
+  if (!html.includes('href="/docs/nostr-interoperability/"')) fail(route + " does not expose interoperability guidance");
+}
+
 if (failures.length) {
   console.error("site verification failed (" + failures.length + ")");
   for (const failure of failures) console.error("- " + failure);
   process.exit(1);
 }
 
-console.log("site verification passed: 12 routes, internal targets, source links, search coverage, lifecycle claims, and public boundary");
+console.log("site verification passed: " + routes.length + " routes, internal targets, source links, search coverage, lifecycle claims, and public boundary");

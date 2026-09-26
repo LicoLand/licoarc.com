@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://licoarc.com/</loc></url>
   <url><loc>https://licoarc.com/docs/</loc></url>
+  <url><loc>https://licoarc.com/docs/nostr-interoperability/</loc></url>
   <url><loc>https://licoarc.com/docs/concepts/</loc></url>
   <url><loc>https://licoarc.com/docs/protocol-line/</loc></url>
   <url><loc>https://licoarc.com/docs/foundation/</loc></url>

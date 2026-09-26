@@ -1,12 +1,19 @@
 # Lico Arc Protocol
 
-> LicoArc is an implementation-neutral Candidate protocol definition for end-to-end encrypted messaging, independent device identity, reliable exchange, groups, and federation across untrusted Stations.
+> LicoArc defines standard Nostr interoperability plus open Endpoint-protection and collaboration enhancements. Supporting ordinary clients share NIP-17/44/59; enhanced clients share public application contracts, not a client brand.
 
-Current line: licoarc.protocol-line.v1, Generation 1, Candidate. Definition status is COMPLETE across eight mandatory capabilities. New sessions are eligible; Protocol-Line publication is ineligible. Source and documentation publication does not establish implementation readiness, interoperability, certification, or deployment. Protocol source is licensed under Apache-2.0.
+Native line (not a prerequisite for ordinary Nostr chat): licoarc.protocol-line.v1, Generation 1, Candidate. Definition status is COMPLETE across eight mandatory capabilities. New sessions are eligible; Protocol-Line publication is ineligible. Source and documentation publication does not establish implementation readiness, interoperability, certification, or deployment. Protocol source is licensed under Apache-2.0.
 
 An Endpoint owns keys, plaintext, peer acceptance, approvals, effects, and authenticated confirmations. A Station carries opaque protected packets and has no trust authority. A Network supplies an interoperability context. An independently key-holding isolated runtime is an Endpoint; agent workflow and tool permissions belong to the application.
 
 The website is an orientation layer. The public LicoArc repository owns normative meaning. The Markdown links below point directly to its maintained public sources.
+
+## Nostr interoperability (V1 Candidate)
+
+- [Nostr interoperability guide](https://licoarc.com/docs/nostr-interoperability/): Baseline private messages, enhanced account binding and explicit capabilities.
+- [Exact binding definition](https://raw.githubusercontent.com/LicoLand/LicoArc/996dc9162401d31a9747f0a98accf3536b53d765/spec/interop/v1/protocol.md): Immutable Candidate source, distinct from a runtime-support claim.
+
+Nostr account keys and Endpoint keys remain separate. Standard NIP-44 is not claimed to have forward secrecy or post-quantum protection. Enhanced messages never silently downgrade or gain a weaker compatibility copy. Native proof and source checks do not certify this composite or any client implementation.
 
 ## Start here
 
