@@ -1,0 +1,10 @@
+{
+  "format": "licoarc.documentation-source.v1",
+  "repository": "LicoLand/LicoArc",
+  "public": {
+    "ref": "release"
+  },
+  "preview": {
+    "revision": "3a73972663f3d8dcf921a7623c04afa068fc7ae4"
+  }
+}

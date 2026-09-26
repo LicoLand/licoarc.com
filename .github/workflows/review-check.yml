@@ -1,18 +1,17 @@
-name: deploy-pages
+name: Review check
 on:
   push:
+    branches: ["feature/nostr-layered-v1-20260926"]
+  pull_request:
     branches: ["main"]
-  schedule:
-    - cron: '23 * * * *'
-  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: review-check-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  build:
-    if: github.ref == 'refs/heads/main'
+  review:
+    name: Generated documentation review
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -24,7 +23,7 @@ jobs:
           python-version: "3.12"
       - name: Resolve one source snapshot
         id: source
-        run: python tools/resolve_source.py --mode public --output "$GITHUB_OUTPUT"
+        run: python tools/resolve_source.py --mode preview --output "$GITHUB_OUTPUT"
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           repository: LicoLand/LicoArc
@@ -36,27 +35,17 @@ jobs:
       - name: Test the publishing contract
         run: python -m unittest discover -s tests -v
       - name: Build and check generated documentation
-        run: python tools/docs_build.py --source .protocol-source --revision '${{ steps.source.outputs.revision }}'
+        run: python tools/docs_build.py --source .protocol-source --revision '${{ steps.source.outputs.revision }}' --preview
       - name: Verify site is reproducible
-        run: python tools/check_reproducible.py --source .protocol-source --revision '${{ steps.source.outputs.revision }}'
-      - name: Record build commits
+        run: python tools/check_reproducible.py --source .protocol-source --revision '${{ steps.source.outputs.revision }}' --preview
+      - name: Verify repository version governance
+        run: tools/release/verify-version-governance verify
+      - name: Record renderer/source provenance
         run: |
           git rev-parse HEAD > site/renderer-commit.txt
           git -C .protocol-source rev-parse HEAD > site/protocol-commit.txt
-      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          path: site
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - name: Deploy generated documentation
-        id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346
+          name: documentation-preview
+          path: site/
+          retention-days: 14

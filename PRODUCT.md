@@ -1,37 +1,30 @@
-# licoarc.com Product
+# licoarc.com
 
-licoarc.com is the public English documentation surface for Lico Arc Protocol.
-It helps international developers understand the protocol boundary, navigate
-the current definition, and reach the canonical public source without turning
-the website into a second specification.
+This repository publishes LicoArc's documentation as static pages. It owns presentation
+and publication, not protocol meaning. Readers should be able to start with a short
+overview, follow an implementation guide, read exact normative sources, and propose
+a correction without first knowing the project's internal decision process.
 
-## Confirmed product facts
+## Product contract
 
-- The audience is international developers reading in English, including those
-  evaluating protected communication for isolated agent runtimes.
-- Standard web search and direct agent retrieval should discover the same useful,
-  source-linked documentation. Search visibility never changes protocol claims.
-- Lico Arc Protocol remains the authority for protocol meaning. The website
-  summarizes and links to that public repository.
-- The current Protocol Line is V1 / Generation 1. It is a `Candidate`, its
-  definition status is `COMPLETE`, all eight mandatory capabilities are
-  complete, it is session eligible, and it is publication ineligible.
-- Definition, source verification, publication, implementation,
-  interoperability, audit, deployment, support, and operation are separate
-  claims.
-- The website is a provider-neutral static site. `public/` is its complete
-  deployable artifact; development records and rendered review evidence remain
-  outside that tree.
-- The canonical domain is `licoarc.com`.
-- The first paint is dark. A visitor may explicitly choose and retain a light
-  preference.
-- The reading experience supports keyboard navigation, reduced motion,
-  responsive desktop and mobile layouts, and complete navigation without
-  JavaScript.
+Protocol prose and navigation have one authored home: LicoArc. The website renderer
+consumes a single source snapshot plus its catalogue. It generates all chapter HTML,
+status projection, navigation, local search, source links, sitemap and agent-readable
+copies. No parallel HTML narrative, manual index or hardcoded protocol status exists.
 
-## Product boundary
+The reading interface supports keyboard navigation, mobile screens, large tables,
+code blocks, a remembered light/dark preference and browsing without JavaScript.
+Search and legacy redirects enhance the static interface. Local system fonts avoid
+third-party font requests; no hosted application backend or analytics is required.
 
-The site does not publish a Protocol Line, certify compatibility, expose a
-private SDK, operate a Network or Station, provide a hosted backend, collect
-analytics, or define protocol semantics independently of Lico Arc Protocol.
-Technical claims link to their canonical public source.
+## Publication contract
+
+Public and preview source selection are separate. Public builds follow the configured
+protected branch or an explicitly reviewed immutable rollback. Previews never deploy
+and are marked noindex. A source change does not require editing the website repository;
+a scheduled pull/build and manual dispatch use the same publisher. Build provenance
+identifies the exact content and renderer inputs. Failed builds do not replace a site.
+
+Displaying a Candidate, an open design question or a status transition must not require
+changing this repository. Publishing documentation does not confer protocol compatibility,
+create a Protocol Line or make SDK/deployment availability a protocol-design gate.

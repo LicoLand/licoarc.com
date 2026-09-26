@@ -1,61 +1,101 @@
 # licoarc.com
 
-English public documentation for Lico Arc Protocol. The website is an
-orientation layer; normative protocol and lifecycle authority remains in the
-public [Lico Arc Protocol repository](https://github.com/LicoLand/LicoArc).
+The static documentation publisher for [Lico Arc Protocol](https://github.com/LicoLand/LicoArc).
+**Write protocol documentation once, in LicoArc; build the website from that source.**
 
-The current source projects V1 / Generation 1 as a Candidate with definition
-status COMPLETE, eight complete mandatory capabilities, session eligibility,
-and Protocol-Line publication ineligibility. Source publication and website
-deployment do not certify, publish, or operate a stable Protocol Line.
+| Maintained here | Maintained in LicoArc |
+| --- | --- |
+| MkDocs renderer, shared theme and assets | Markdown chapters and examples |
+| Build checks and Pages workflow | `docs/catalog.json`: navigation, page classification, old-route redirects |
+| Public channel and immutable preview selection | Normative Markdown, JSON schemas, registries and CDDL |
 
-## Local preview and verification
+There is no hand-maintained protocol HTML. `site/` and `.build/` are generated and
+ignored by Git. Definition status, scope and content identities are read from the
+same source checkout as the prose; this repository does not repeat their values.
 
-Serve the complete deployable tree from the repository root:
+## Build and preview
 
-    python3 -m http.server 4173 --directory public
+Use Python 3.12+ and Git. Install the locked toolchain in a virtual environment:
 
-Then open http://127.0.0.1:4173/. Verify the candidate with:
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.lock
+```
 
-    node tools/verify-site.mjs
-    tools/release/verify-version-governance verify
+With the LicoArc checkout beside this repository:
 
-Only public/ is uploaded as the Pages artifact. Design records, local review
-images, DNS preparation, release governance, and development tools stay
-outside that tree.
+```sh
+python tools/docs_build.py --source ../LicoArc --preview
+python -m http.server 4173 --directory site
+```
 
-## Publication state
+Open `http://localhost:4173/`. Locally added documents must be tracked (`git add`)
+before the build, so scratch files do not accidentally become public documents.
+For an exact clean source, pass `--revision <full-commit-sha>` instead of using the
+default working-tree preview. Source bytes, renderer digest and resolved commit are
+recorded in `site/provenance.json`. Retain both checkouts and `requirements.lock` to
+reproduce a build. The build requires no network after the sources and dependencies
+are available; visitors only download static HTML/CSS/JavaScript and source files.
 
-The public repository has GitHub Pages enabled in workflow mode with the custom
-domain licoarc.com. The prepared workflow validates and uploads only public/.
-Deployment state comes from the latest Pages workflow result and subsequent
-HTTPS plus apex and www read-back; this source file does not encode a
-point-in-time live-site claim.
+Run builder tests and the generated-site checker:
 
-The reviewed Cloudflare BIND import is stored at
-dns/cloudflare-github-pages.txt. Organization-verification tokens are added
-directly in the DNS provider and are never committed. Import the reviewed
-records additively when the provider lacks them. A publication is complete only
-after the Pages workflow succeeds and HTTPS plus apex and www behavior is read
-back.
+```sh
+python -m unittest discover -s tests -v
+python tools/check_site.py site
+```
 
-This continuously delivered site does not own a product version. Its
-[release profile](docs/releases/README.md) records that boundary.
+The builder already invokes MkDocs with strict links/anchors and the site checker.
+No manual edit to a generated HTML, search index or sitemap is retained.
 
-## Search and agent discovery
+## Automatic publication
 
-Every page has a canonical URL, descriptive title and summary, matching social
-and structured metadata, and a link to the compact /llms.txt documentation
-index. /robots.txt permits crawling and advertises /sitemap.xml. The llms.txt
-index links directly to maintained canonical Markdown sources; it is a
-retrieval aid and does not guarantee indexing, ranking, or citation.
+`docs/protocol-source.json` separates two purposes:
 
-For an HTTPS publication, submit https://licoarc.com/sitemap.xml in Google
-Search Console and Bing Webmaster Tools and inspect actual indexing results.
-Google enables generative-AI inclusion by default; verify that the property has
-not been excluded and inspect the separate generative-AI impressions report.
-No account verification, submission, traffic, or search appearance is claimed
-by this source tree. See the official [Google search guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide),
-[generative-AI inclusion setting](https://support.google.com/webmasters/answer/16908024),
-[generative-AI impressions report](https://support.google.com/webmasters/answer/16984139),
-and [OpenAI crawler guidance](https://developers.openai.com/api/docs/bots).
+- **Public:** follow the protected LicoArc `release` branch. Resolve it once to an
+  exact commit, then build only that snapshot. For a reviewed rollback, replace
+  the public selector with `{"revision":"<full-sha>"}` in a normal PR.
+- **Preview:** use an immutable source revision. A website PR uploads a review
+  artifact, never deploys it. A protocol PR uses a pinned version of this renderer
+  and renders its own proposed documentation.
+
+The Pages workflow runs on website changes to `main`, an hourly source check and
+manual workflow dispatch. It rebuilds from the chosen source even when the website
+repository did not change. No cross-repository write token, repository mutation or
+hand-edited revision bump is needed for ordinary promoted documentation changes.
+GitHub may delay scheduled jobs. Dispatch the same workflow after promotion when
+prompt publication is needed.
+
+Only a successful `main` build uploads `site/` for Pages deployment. The existing
+GitHub Pages environment remains the deployment authority. PR jobs have read-only
+repository permissions and no Pages deployment job. A broken link, missing catalogue
+or failed build leaves the previous deployment intact. Publishing source documentation
+is independent of protocol session eligibility, SDKs and production qualification.
+
+**Initial rollout:** this renderer needs the companion LicoArc documentation catalogue.
+Review the previews, promote the LicoArc documentation through its normal protected
+branch flow to `release`, then merge the website publisher. A public source lacking
+the catalogue fails with a clear error; it never silently falls back to a feature branch.
+
+## Generated outputs
+
+MkDocs renders all selected tracked Markdown, including the original normative text.
+The curated navigation provides Start here, Guides, Protocol reference and Contribute
+reading paths. Historical decisions carry a distinct label and do not become current
+normative rules. Relative source links become internal site links where available;
+other repository references link to the same immutable source commit.
+
+The build also generates local full-text search, a sitemap, `llms.txt`, unchanged
+`raw/` sources, `page-map.json`, `redirects.json` and `provenance.json`. Legacy chapter
+URLs redirect to the corresponding source page; obsolete anchors land on that page
+instead of a nonexistent section. Preview pages are noindex. These discovery files
+are publishing aids, not promises about search rankings.
+
+## Contribute
+
+Correct prose and navigation in **LicoArc**, not this repository. Report theme,
+rendering or publishing bugs here with the source revision from the affected page.
+One shared template controls navigation, source badges, mobile layout and tables.
+`DESIGN.md` records the earlier visual direction, not protocol facts or authored pages.
+Existing source/assets attribution is preserved; copied protocol sources retain their
+Apache-2.0 license. DNS notes are in `dns/`; this change does not edit DNS or secrets.

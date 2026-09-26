@@ -1,3 +1,7 @@
+> Historical visual-design record. Current documentation content and navigation come from LicoArc;
+> build and publication behavior is defined in [README.md](README.md). Layout/assets may be reused,
+> but references below to hand-authored pages or historical protocol status are not current authority.
+
 ---
 name: Lico Arc — Signal in Space
 description: A spatial identity for an open protocol, carried from an immersive introduction into precise documentation.
