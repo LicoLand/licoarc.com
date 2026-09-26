@@ -29,6 +29,17 @@ the website into a second specification.
   responsive desktop and mobile layouts, and complete navigation without
   JavaScript.
 
+## Nostr interoperability scope
+
+Present standard NIP-17/44/59 messaging separately from enhanced LicoArc
+Endpoint/collaboration contracts. Any independent client can implement the
+shared enhancements; no LicoUp brand, official relay or federation membership
+is required for the Nostr path. Local workflow engines remain product behavior.
+Capabilities never imply execution consent; enhanced failures never become
+weaker chat or compatibility copies. The experimental extension kind is not
+an approved upstream NIP. Pin the exact source without upgrading definition
+checks into real-client interoperability or composite-security evidence.
+
 ## Product boundary
 
 The site does not publish a Protocol Line, certify compatibility, expose a

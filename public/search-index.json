@@ -1,15 +1,21 @@
 [
   {
-    "title": "LicoArc encrypted messaging protocol",
+    "title": "LicoArc Nostr interoperability and collaboration",
     "url": "/",
-    "summary": "Explore the LicoArc Candidate protocol for end-to-end encrypted messaging, independent device identity, reliable exchange, and federation across untrusted relays.",
-    "search": "licoarc home protocol boundary status generation 1 candidate complete eight capabilities canonical source encrypted messaging federation protocol agent communication independent device identity trust stays at the edge protect carry confirm signal"
+    "summary": "Explore the LicoArc V1 Candidate: standard Nostr private messaging with open extensions for Endpoint protection, reliable exchange and cross-client collaboration.",
+    "search": "licoarc home protocol boundary status generation 1 candidate complete eight capabilities canonical source encrypted messaging federation protocol agent communication independent device identity trust stays at the edge protect carry confirm signal nostr nip17 nip44 nip59 open collaboration interoperable clients"
   },
   {
     "title": "Documentation overview",
     "url": "/docs/",
-    "summary": "Evaluate LicoArc for encrypted agent communication: Endpoint identity, message confirmations, application permissions, and the boundary with MCP and A2A.",
+    "summary": "Read the Nostr baseline, open enhancements and native Endpoint contracts as separate interoperable layers.",
     "search": "documentation overview read the protocol from boundary to bytes start with the three-entity model, follow the one exact protocol line, then inspect capability semantics and source verification. overview documentation endpoint station network eight capabilities canonical source encrypted agent communication isolated runtime tool permissions authenticated confirmations MCP A2A application integration"
+  },
+  {
+    "title": "Nostr interoperability",
+    "url": "/docs/nostr-interoperability/",
+    "summary": "Standard Nostr private messaging, open LicoArc endpoint protection, and shared collaboration capabilities without a client-brand requirement.",
+    "search": "nostr nip17 nip44 nip59 10050 1059 44900 standard private messaging open collaboration capability negotiation account binding no downgrade third party client interoperability v1"
   },
   {
     "title": "Core concepts",

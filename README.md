@@ -4,7 +4,11 @@ English public documentation for Lico Arc Protocol. The website is an
 orientation layer; normative protocol and lifecycle authority remains in the
 public [Lico Arc Protocol repository](https://github.com/LicoLand/LicoArc).
 
-The current source projects V1 / Generation 1 as a Candidate with definition
+The site explains the standard Nostr private-message baseline and the independent
+open LicoArc enhancement binding. Its exact Candidate source revision is pinned
+in `docs/protocol-source.json`; it does not claim a shipped Nostr client.
+
+The current native source projects V1 / Generation 1 as a Candidate with definition
 status COMPLETE, eight complete mandatory capabilities, session eligibility,
 and Protocol-Line publication ineligibility. Source publication and website
 deployment do not certify, publish, or operate a stable Protocol Line.
