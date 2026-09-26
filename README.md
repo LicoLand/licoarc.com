@@ -4,13 +4,14 @@ English public documentation for Lico Arc Protocol. The website is an
 orientation layer; normative protocol and lifecycle authority remains in the
 public [Lico Arc Protocol repository](https://github.com/LicoLand/LicoArc).
 
-The site explains the standard Nostr private-message baseline and the independent
-open LicoArc enhancement binding. Its exact Candidate source revision is pinned
+The site explains carrier-independent durable communication, live capabilities,
+the standard Nostr private-message baseline and the optional enhanced binding. Its exact Candidate source revision is pinned
 in `docs/protocol-source.json`; it does not claim a shipped Nostr client.
 
 The current native source projects V1 / Generation 1 as a Candidate with definition
-status COMPLETE, eight complete mandatory capabilities, session eligibility,
-and Protocol-Line publication ineligibility. Source publication and website
+status PARTIAL, five required core capabilities and independent optional targets.
+New-session eligibility is false pending formal proof requalification;
+Protocol-Line publication remains ineligible. Source publication and website
 deployment do not certify, publish, or operate a stable Protocol Line.
 
 ## Local preview and verification
@@ -22,6 +23,7 @@ Serve the complete deployable tree from the repository root:
 Then open http://127.0.0.1:4173/. Verify the candidate with:
 
     node tools/verify-site.mjs
+    node tools/verify-protocol-source.mjs
     tools/release/verify-version-governance verify
 
 Only public/ is uploaded as the Pages artifact. Design records, local review

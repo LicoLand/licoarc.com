@@ -14,8 +14,9 @@ the website into a second specification.
 - Lico Arc Protocol remains the authority for protocol meaning. The website
   summarizes and links to that public repository.
 - The current Protocol Line is V1 / Generation 1. It is a `Candidate`, its
-  definition status is `COMPLETE`, all eight mandatory capabilities are
-  complete, it is session eligible, and it is publication ineligible.
+  definition status is `PARTIAL`, five capabilities form the minimum core,
+  optional targets are separate, and new-session eligibility is false pending
+  formal proof requalification. Publication remains ineligible.
 - Definition, source verification, publication, implementation,
   interoperability, audit, deployment, support, and operation are separate
   claims.
@@ -35,7 +36,8 @@ Present standard NIP-17/44/59 messaging separately from enhanced LicoArc
 Endpoint/collaboration contracts. Any independent client can implement the
 shared enhancements; no LicoUp brand, official relay or federation membership
 is required for the Nostr path. Local workflow engines remain product behavior.
-Capabilities never imply execution consent; enhanced failures never become
+Capabilities update existing authorized conversations without rebinding or
+reconnecting, and never imply execution consent; enhanced failures never become
 weaker chat or compatibility copies. The experimental extension kind is not
 an approved upstream NIP. Pin the exact source without upgrading definition
 checks into real-client interoperability or composite-security evidence.
@@ -46,3 +48,10 @@ The site does not publish a Protocol Line, certify compatibility, expose a
 private SDK, operate a Network or Station, provide a hosted backend, collect
 analytics, or define protocol semantics independently of Lico Arc Protocol.
 Technical claims link to their canonical public source.
+
+## Continuity boundary
+
+Nostr is an optional adapter; accepted messages, work, approvals and attachments
+do not expire because a connection or processing turn ends. Explain quotas,
+current authorization and cryptographic recovery without promising unlimited
+storage, guaranteed relay honesty or completed runtime implementation.
