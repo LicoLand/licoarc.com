@@ -1,1 +1,4 @@
 .impeccable/review/
+
+# Private local audit evidence and reports. Never publish.
+/.general-auditor/local/
