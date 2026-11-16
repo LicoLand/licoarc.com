@@ -4,7 +4,7 @@ import { dirname, extname, join, normalize, relative, resolve, sep } from "node:
 import { fileURLToPath } from "node:url";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const publicRoot = join(repositoryRoot, "public");
+const siteRoot = join(repositoryRoot, "docs");
 const routes = [
   "/", "/docs/", "/docs/concepts/", "/docs/protocol-line/",
   "/docs/foundation/", "/docs/identity/", "/docs/protection/",
@@ -15,8 +15,8 @@ const failures = [];
 
 const fail = (message) => failures.push(message);
 const routeFile = (route) => route === "/"
-  ? join(publicRoot, "index.html")
-  : join(publicRoot, route.slice(1), "index.html");
+  ? join(siteRoot, "index.html")
+  : join(siteRoot, route.slice(1), "index.html");
 
 async function filesUnder(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -25,7 +25,7 @@ async function filesUnder(directory) {
     const path = join(directory, entry.name);
     if (entry.isDirectory()) files.push(...await filesUnder(path));
     else if (entry.isFile()) files.push(path);
-    else fail("public tree contains a non-regular entry: " + relative(publicRoot, path));
+    else fail("deployable tree contains a non-regular entry: " + relative(siteRoot, path));
   }
   return files;
 }
@@ -38,7 +38,7 @@ function internalTarget(value, sourceRoute) {
   else if (withoutQuery.startsWith("/")) targetRoute = withoutQuery;
   else targetRoute = "/" + normalize(join(sourceRoute, withoutQuery)).split(sep).join("/");
   const file = extname(targetRoute)
-    ? join(publicRoot, targetRoute.slice(1))
+    ? join(siteRoot, targetRoute.slice(1))
     : routeFile(targetRoute.endsWith("/") ? targetRoute : targetRoute + "/");
   return { file, fragment };
 }
@@ -89,7 +89,7 @@ for (const route of routes.slice(1)) {
 }
 
 try {
-  const index = JSON.parse(await readFile(join(publicRoot, "search-index.json"), "utf8"));
+  const index = JSON.parse(await readFile(join(siteRoot, "search-index.json"), "utf8"));
   if (!Array.isArray(index) || index.length !== routes.length) fail("search index must contain exactly twelve entries");
   for (const route of routes) {
     const matches = index.filter((entry) => entry.url === route);
@@ -101,36 +101,36 @@ try {
   fail("search index is missing or invalid JSON");
 }
 
-const publicFiles = await filesUnder(publicRoot);
-const allowedRootFiles = new Set(["CNAME", "favicon.svg", "index.html", "search-index.json", "robots.txt", "sitemap.xml", "llms.txt"]);
-for (const file of publicFiles) {
-  const path = relative(publicRoot, file).split(sep).join("/");
+const siteFiles = await filesUnder(siteRoot);
+const allowedRootFiles = new Set([".nojekyll", "CNAME", "favicon.svg", "index.html", "search-index.json", "robots.txt", "sitemap.xml", "llms.txt"]);
+for (const file of siteFiles) {
+  const path = relative(siteRoot, file).split(sep).join("/");
   const top = path.split("/", 1)[0];
   if (!allowedRootFiles.has(path) && top !== "assets" && top !== "docs") fail("unexpected deployable file: " + path);
-  if (/\.(?:md|map|log|png|jpe?g)$/i.test(path)) fail("development or review material entered public/: " + path);
+  if (/\.(?:md|map|log|png|jpe?g)$/i.test(path)) fail("development or review material entered docs/: " + path);
   const text = await readFile(file, "utf8");
   if (/PLAN-0\d+|LicoArc-(?:TypeScript|Rust|Go)|\.impeccable\/review|\/Users\//i.test(text)) {
     fail("forbidden private, local, or review material in " + path);
   }
 }
 
-const cname = (await readFile(join(publicRoot, "CNAME"), "utf8")).trim();
-if (cname !== "licoarc.com") fail("public/CNAME must contain only licoarc.com");
+const cname = (await readFile(join(siteRoot, "CNAME"), "utf8")).trim();
+if (cname !== "licoarc.com") fail("docs/CNAME must contain only licoarc.com");
 
 const expectedCanonicalUrls = routes.map((route) => "https://licoarc.com" + route);
-const sitemap = await readFile(join(publicRoot, "sitemap.xml"), "utf8");
+const sitemap = await readFile(join(siteRoot, "sitemap.xml"), "utf8");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 if (JSON.stringify(sitemapUrls) !== JSON.stringify(expectedCanonicalUrls)) {
   fail("sitemap must list each canonical route exactly once");
 }
 
-const robots = await readFile(join(publicRoot, "robots.txt"), "utf8");
+const robots = await readFile(join(siteRoot, "robots.txt"), "utf8");
 if (!/^User-agent: \*$/m.test(robots) || !/^Allow: \/$/m.test(robots) ||
     !/^Sitemap: https:\/\/licoarc\.com\/sitemap\.xml$/m.test(robots)) {
   fail("robots.txt must permit crawling and advertise the canonical sitemap");
 }
 
-const llms = await readFile(join(publicRoot, "llms.txt"), "utf8");
+const llms = await readFile(join(siteRoot, "llms.txt"), "utf8");
 const llmsLinks = [...llms.matchAll(/\[[^\]]+\]\((https:\/\/[^)]+)\)/g)].map((match) => match[1]);
 const canonicalSourcePrefix = "https://raw.githubusercontent.com/LicoLand/LicoArc/refs/heads/release/";
 if (!llms.startsWith("# Lico Arc Protocol\n") || !llmsLinks.includes("https://licoarc.com/docs/#agent-communication") ||
@@ -150,13 +150,11 @@ for (const value of llmsLinks.filter((link) => link.startsWith("https://licoarc.
   }
 }
 
-const workflow = await readFile(join(repositoryRoot, ".github/workflows/pages.yml"), "utf8");
-if (!/path: public/.test(workflow) || /path: \./.test(workflow)) fail("Pages workflow must upload only public/");
-for (const use of workflow.matchAll(/uses:\s+([^\s]+)/g)) {
-  if (!/@[0-9a-f]{40}$/.test(use[1])) fail("Pages action is not pinned to a commit: " + use[1]);
-}
-if (!/pages: write/.test(workflow) || !/id-token: write/.test(workflow) || !/contents: read/.test(workflow)) {
-  fail("Pages workflow permissions are incomplete");
+const workflowsDir = join(repositoryRoot, ".github/workflows");
+for (const entry of await readdir(workflowsDir)) {
+  if (!entry.endsWith(".yml") && !entry.endsWith(".yaml")) continue;
+  const text = await readFile(join(workflowsDir, entry), "utf8");
+  if (/upload-pages-artifact|deploy-pages/.test(text)) fail("Actions deployment bypasses the docs/ publish boundary: " + entry);
 }
 
 const requiredClaims = ["Generation 1", "Candidate", "COMPLETE", "publication ineligible"];
@@ -174,4 +172,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("site verification passed: 12 routes, internal targets, source links, search coverage, lifecycle claims, and public boundary");
+console.log("site verification passed: 12 routes, internal targets, source links, search coverage, lifecycle claims, and deploy boundary");

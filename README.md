@@ -1,6 +1,6 @@
 # licoarc.com
 
-Updated: 2026-09-25
+Updated: 2026-11-17
 
 English public documentation for Lico Arc Protocol. The website is an
 orientation layer; normative protocol and lifecycle authority remains in the
@@ -15,21 +15,21 @@ deployment do not certify, publish, or operate a stable Protocol Line.
 
 Serve the complete deployable tree from the repository root:
 
-    python3 -m http.server 4173 --directory public
+    python3 -m http.server 4173 --directory docs
 
 Then open http://127.0.0.1:4173/. Verify the candidate with:
 
     node tools/verify-site.mjs
 
-Only public/ is uploaded as the Pages artifact. Design records, local review
-images, DNS preparation, and development tools stay
-outside that tree.
+GitHub Pages publishes docs/ from the main branch. Design records, local
+review images, DNS preparation, and development tools stay outside that tree.
 
 ## Publication state
 
-The public repository has GitHub Pages enabled in workflow mode with the custom
-domain licoarc.com. The prepared workflow validates and uploads only public/.
-Deployment state comes from the latest Pages workflow result and subsequent
+The public repository has GitHub Pages enabled in branch mode, publishing
+docs/ from main with the custom domain licoarc.com. A CI workflow validates
+the candidate on every push; the branch build is the only deploy path.
+Deployment state comes from the latest Pages build result and subsequent
 HTTPS plus apex and www read-back; this source file does not encode a
 point-in-time live-site claim.
 
@@ -37,7 +37,7 @@ The reviewed Cloudflare BIND import is stored at
 dns/cloudflare-github-pages.txt. Organization-verification tokens are added
 directly in the DNS provider and are never committed. Import the reviewed
 records additively when the provider lacks them. A publication is complete only
-after the Pages workflow succeeds and HTTPS plus apex and www behavior is read
+after the Pages build succeeds and HTTPS plus apex and www behavior is read
 back.
 
 This continuously delivered site does not own a product version.

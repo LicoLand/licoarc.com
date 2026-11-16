@@ -69,5 +69,5 @@ fi
 
 "$python_bin" "$tool_path" "$command_name" \
   --repository-root "$repo_root" \
-  --plan "docs/releases/plan.json" \
+  --plan "releases/plan.json" \
   "$@"

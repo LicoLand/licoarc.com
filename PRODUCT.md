@@ -19,8 +19,8 @@ the website into a second specification.
 - Definition, source verification, publication, implementation,
   interoperability, audit, deployment, support, and operation are separate
   claims.
-- The website is a provider-neutral static site. `public/` is its complete
-  deployable artifact; development records and rendered review evidence remain
+- The website is a provider-neutral static site. `docs/` is its complete
+  deployable tree; development records and rendered review evidence remain
   outside that tree.
 - The canonical domain is `licoarc.com`.
 - The first paint is light. A visitor may explicitly choose and retain a dark

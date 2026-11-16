@@ -89,7 +89,7 @@ relationships onto night navy.
 ## Typography
 
 Bricolage Grotesque sets display type and headings at weight 700 and is
-self-hosted with its license in `public/assets/fonts/`. Body copy uses the
+self-hosted with its license in `docs/assets/fonts/`. Body copy uses the
 platform UI font. The platform monospace font identifies literal protocol
 data, code, capability index and the ordered message demonstration. No font
 is loaded from another host.
