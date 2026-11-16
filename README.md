@@ -1,5 +1,7 @@
 # licoarc.com
 
+Updated: 2026-09-25
+
 English public documentation for Lico Arc Protocol. The website is an
 orientation layer; normative protocol and lifecycle authority remains in the
 public [Lico Arc Protocol repository](https://github.com/LicoLand/LicoArc).
@@ -18,10 +20,9 @@ Serve the complete deployable tree from the repository root:
 Then open http://127.0.0.1:4173/. Verify the candidate with:
 
     node tools/verify-site.mjs
-    tools/release/verify-version-governance verify
 
 Only public/ is uploaded as the Pages artifact. Design records, local review
-images, DNS preparation, release governance, and development tools stay
+images, DNS preparation, and development tools stay
 outside that tree.
 
 ## Publication state
@@ -39,8 +40,7 @@ records additively when the provider lacks them. A publication is complete only
 after the Pages workflow succeeds and HTTPS plus apex and www behavior is read
 back.
 
-This continuously delivered site does not own a product version. Its
-[release profile](docs/releases/README.md) records that boundary.
+This continuously delivered site does not own a product version.
 
 ## Search and agent discovery
 

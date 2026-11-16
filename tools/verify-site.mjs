@@ -50,7 +50,7 @@ for (const route of routes) {
     htmlByRoute.set(route, html);
     const canonicalUrl = "https://licoarc.com" + route;
     if (!/^<!doctype html>/i.test(html)) fail(route + " lacks an HTML doctype");
-    if (!/<html lang="en" data-theme="dark">/.test(html)) fail(route + " lacks English dark-first metadata");
+    if (!/<html lang="en" data-theme="light">/.test(html)) fail(route + " lacks English light-first metadata");
     if (!/<meta name="viewport"/.test(html)) fail(route + " lacks viewport metadata");
     if (!html.includes('<link rel="canonical" href="' + canonicalUrl + '">')) fail(route + " lacks its exact canonical URL");
     if (!html.includes('<link rel="describedby" href="/llms.txt">')) fail(route + " lacks llms.txt discovery metadata");

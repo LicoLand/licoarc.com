@@ -23,7 +23,7 @@ the website into a second specification.
   deployable artifact; development records and rendered review evidence remain
   outside that tree.
 - The canonical domain is `licoarc.com`.
-- The first paint is dark. A visitor may explicitly choose and retain a light
+- The first paint is light. A visitor may explicitly choose and retain a dark
   preference.
 - The reading experience supports keyboard navigation, reduced motion,
   responsive desktop and mobile layouts, and complete navigation without

@@ -29,6 +29,9 @@
         ? 'Reduced motion' : paused ? 'Play motion' : 'Pause motion';
       motionButton.disabled = reducedMotion.matches;
     }
+    document.body.classList.toggle('motion-paused', paused);
+    window.CreamField?.setPaused(paused);
+    window.NightSky?.setPaused(paused);
     document.dispatchEvent(new CustomEvent('licoarc:motion', { detail: { paused } }));
   };
   updateMotion();

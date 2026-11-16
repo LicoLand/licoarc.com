@@ -1,219 +1,165 @@
 ---
-name: Lico Arc — Signal in Space
-description: A spatial identity for an open protocol, carried from an immersive introduction into precise documentation.
+name: Lico Arc — the protocol, running
+description: A paper page with one ink panel in which a protected record runs the protocol, carried into precise documentation.
 colors:
-  canvas: "#101210"
-  surface: "#181b17"
-  surface-strong: "#242922"
-  text: "#eff0e9"
-  muted: "#a7ada1"
-  faint: "#969e8f"
-  line: "#343a30"
-  accent: "#d5f478"
-  accent-strong: "#e5ff9c"
-  accent-soft: "#25321a"
-  caution: "#e8c18a"
-  action-ink: "#17200d"
-  light-canvas: "#f0f1e9"
-  light-surface: "#e6e8df"
-  light-text: "#172010"
-  light-muted: "#525e49"
-  light-accent: "#365a13"
+  canvas: "#0f1036"
+  surface: "#181a4e"
+  surface-strong: "#24266b"
+  text: "#fff8ea"
+  muted: "#c2bdd3"
+  faint: "#a39fbd"
+  line: "#2f3172"
+  accent: "#9fc0ff"
+  accent-strong: "#c7dbff"
+  accent-soft: "#1b2866"
+  action: "#073cfc"
+  action-ink: "#ffffff"
+  caution: "#f2d38b"
+  light-canvas: "#fbf5e8"
+  light-surface: "#f4ecda"
+  light-text: "#15120f"
+  light-muted: "#5a544c"
+  light-accent: "#073cfc"
 typography:
   display:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "clamp(4.5rem, 9.4vw, 9.5rem)"
-    fontWeight: 420
-    lineHeight: 1.04
-    letterSpacing: "-0.04em"
-  headline:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "clamp(2.25rem, 4.25vw, 4.6rem)"
-    fontWeight: 450
-    lineHeight: 1.12
-    letterSpacing: "-0.04em"
-  document-display:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "clamp(2.5rem, 4.8vw, 4.8rem)"
-    fontWeight: 450
-    lineHeight: 1.1
-    letterSpacing: "-0.04em"
+    fontFamily: "Bricolage Grotesque, Noto Sans SC, PingFang SC, sans-serif"
+    fontSize: "clamp(3.6rem, 8.2vw, 8.4rem)"
+    fontWeight: 700
+    lineHeight: 0.96
+    letterSpacing: "-0.035em"
   body:
-    fontFamily: "Manrope, sans-serif"
+    fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Text, Segoe UI, PingFang SC, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.75
-  lead:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "1.12rem"
-    fontWeight: 400
-    lineHeight: 1.8
-  label:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "0.8rem"
-    fontWeight: 400
-    lineHeight: 1.75
   data:
-    fontFamily: "Plex Mono, monospace"
+    fontFamily: "ui-monospace, SF Mono, Menlo, Consolas, monospace"
     fontSize: "0.95rem"
     fontWeight: 400
     lineHeight: 1.6
 rounded:
-  control: "0.2rem"
-  action: "3px"
-  orbit: "50%"
-spacing:
-  gutter: "clamp(1.5rem, 4vw, 5rem)"
-  section: "8.5rem"
-  section-mobile: "4.5rem"
-  group: "2rem"
+  control: "999px"
+  panel: "1.25rem"
+  inner: "1rem"
 components:
   button-primary:
-    backgroundColor: "{colors.accent}"
+    backgroundColor: "{colors.action}"
     textColor: "{colors.action-ink}"
-    rounded: "{rounded.action}"
-    height: "3.8rem"
-    padding: "0.3rem 0.3rem 0.3rem 1.5rem"
-  button-quiet:
-    backgroundColor: "transparent"
-    textColor: "{colors.text}"
     rounded: "{rounded.control}"
-    height: "2.75rem"
-    padding: "0.5rem 0.9rem"
+    height: "3.4rem"
 ---
 
-# Design System: Lico Arc — Signal in Space
+# Design System: Lico Arc — the protocol, running
+
+Updated: 2026-11-16
 
 ## Overview
 
-**Creative North Star: "Signal in Space"**
+The home page shows the protocol running. Beside the statement, one ink panel
+carries a single record through a whole exchange: Endpoint A writes it and
+protects it, the Station carries it without reading it, Endpoint B verifies
+and reads it, and the confirmation returns. The page around the panel is
+quiet paper, and the same type and signal colour continue into the
+documentation. Product claims remain governed by PRODUCT.md.
 
-The identity pairs monumental typography with a precise, dimensional signal
-sculpture. Carbon surfaces, silver filaments, open circular geometry, and a
-single acid-green signal connect the introductory experience to the reading
-surface. The same material and typography continue through every chapter.
+The site shares its display typeface, pill controls and the cipher alphabet
+with the other LicoLand sites.
 
-The homepage introduces the protocol through space and movement. Documentation
-uses the same system at a quieter scale, with a fixed reading measure and
-persistent source wayfinding. Product claims remain governed by PRODUCT.md.
+## The record
 
-**Key Characteristics:**
-
-- A geometric typeface across display, navigation, and reading.
-- Original parametric geometry with real depth and controlled movement.
-- Large shifts in scale and density between sections.
-- Dark first paint and an explicitly selected persistent light theme.
-- Complete document navigation without scripting.
+The record is the site's one picture. `flow.js` steps the exchange, `tiles.js`
+is the LicoLand cipher alphabet (an unchanged copy of the file owned by
+lico.land), and `record.js` draws the panel: a route with Endpoint A, the
+Station and Endpoint B, the record in large type, and what the Station can see
+of it. A protected character is drawn as cipher tiles in the place its letter
+occupies. Three buttons jump to Protect, Carry and Confirm, and the line under
+them states that phase in the protocol's own words.
 
 ## Colors
 
-Carbon and silver establish the neutral field. Acid green identifies the
-signal, primary action, current chapter, focus, and complete definition state.
-Amber is reserved for publication ineligibility. The light theme translates the
-same relationships into pale mineral surfaces and deep green interaction.
+Paper and ink establish the first paint. Signal blue identifies meaning and
+interaction: links, the brand mark, focus, the current chapter, primary
+actions and complete definition state. The record panel is ink on both themes
+and carries the cipher colours: milk, lavender, blue and gold. Gold elsewhere
+is reserved for publication ineligibility. The dark theme translates the same
+relationships onto night navy.
 
-**The Signal Rule.** Accent belongs to meaning and interaction. Keep the
-sculpture predominantly silver so its moving accent remains distinguishable.
+**The Signal Rule.** Accent belongs to meaning and interaction.
 
 ## Typography
 
-Manrope is the display and reading voice. Plex Mono identifies literal protocol
-data, code, capability index, and the ordered message demonstration. Both fonts
-load from Fontsource packages pinned to version 5.3.0 on jsDelivr. Their OFL
-notices remain in `public/assets/fonts/`. Font display uses swap to keep text
-available while the fonts load.
+Bricolage Grotesque sets display type and headings at weight 700 and is
+self-hosted with its license in `public/assets/fonts/`. Body copy uses the
+platform UI font. The platform monospace font identifies literal protocol
+data, code, capability index and the ordered message demonstration. No font
+is loaded from another host.
 
-Oversized, regular-weight display type is an explicit part of the identity.
 Documentation scales down to a comfortable hierarchy and a maximum 70ch
-reading measure. Display tracking stops at -0.04em. Supporting headings use
-muted color to create a second reading beat without introducing another face.
-
-**The Reading Rule.** Motion never makes the opening statement unavailable.
-The title remains legible throughout its short translation and opacity entrance.
+reading measure. Supporting heading lines use muted colour to create a second
+reading beat.
 
 ## Layout
 
-The page uses fluid outer gutters. The introduction gives the left side to the
-statement and the right side to the signal sculpture. Broad two-column section
-introductions lead to a diagram, capability rows, an orbit composition, and a
-source record. Each section has its own density inside a shared spatial rhythm.
+The introduction gives the left side to the statement and the right side to
+the record panel. Broad two-column section introductions lead to a diagram,
+capability rows, an orbit composition and a source record.
 
-At 900px, the primary navigation becomes a native disclosure and the diagram
-stacks over its three controls. At 600px, search takes a dedicated header row,
-the sculpture follows the primary action, the controls stack vertically, and
-the document chapter rail becomes a native disclosure. Data tables and code
-scroll within their own boundaries.
+On the home page the header is translucent over the introduction above 600px.
+At 900px the primary navigation becomes a native disclosure, the diagram
+stacks over its three controls, and Arc follows the primary action. At 600px
+search takes a dedicated header row and the document chapter rail becomes a
+native disclosure. Data tables and code scroll within their own boundaries.
 
 Documentation keeps a 14rem chapter rail, a bounded article, breadcrumbs,
-previous/next links, and a thin reading-progress line. The mobile header is in
-the document flow to preserve vertical reading space.
-
-## Elevation & Depth
-
-Section depth comes from tonal surfaces and hairline rules. The search panel
-uses a downward shadow because it floats above document content. The main
-visual derives depth from a projected parametric surface, surface occlusion,
-normal-based lighting, and separately drawn filaments.
-
-**The Physical Depth Rule.** Use actual geometric depth for the signature
-visual; ordinary controls remain flat and clearly readable.
+previous/next links and a thin reading-progress line.
 
 ## Shapes
 
-The open arc mark, the filament sculpture, endpoint circles, orbit geometry,
-and circular direction controls form one family. Primary actions use compact
-corners and a separate arrow compartment. Documentation uses flat rows,
-hairlines, and tonal callouts rather than decorative containers.
+Controls are pills. Panels, callouts, code blocks and the status record use
+1.25rem corners, with 1rem on inner elements. List rows keep hairline
+dividers. The open arc mark, the three arcs, endpoint circles and orbit
+geometry form one family.
 
 ## Components
 
 ### Navigation and search
 
 The shared header includes product identity, the protocol, capabilities,
-documentation, search, theme switching, and the public repository. Mobile
+documentation, search, theme switching and the public repository. Mobile
 navigation uses native details/summary. Search retains a slash shortcut,
-keyboard result navigation, announced loading/empty/error states, and Escape
+keyboard result navigation, announced loading/empty/error states and Escape
 dismissal. Results are source-linked local content, with no external service.
 
-### Actions
+### Introduction record
 
-Primary actions use the signal color. The arrow moves a few pixels on hover;
-secondary source links use a diagonal arrow. Focus uses a two-pixel accent
-outline with an offset, shared across controls and links.
-
-### Signal field
-
-The original surface is parameterized into 320 segments and 88 strands. Static
-geometry is uploaded once and rendered in two batched draws: a surface pass
-and a filament pass. Pointer position, scroll, time, and theme arrive as
-uniforms. Pixel density is capped at 1.75. The field stops when offscreen or
-when its document is hidden, and resumes on return.
-
-The motion control persists the visitor's preference. Reduced-motion preference
-always takes precedence. A static vector projection is available before
-scripting, when WebGL is unavailable, and during context loss.
+Without scripting the statement, the action and the three phase buttons with
+their first note remain; the running record is a progressive enhancement. The
+canvas is decorative: every fact it shows is also stated in the page text.
 
 ### Message demonstration
 
-Three buttons select protection, carriage, and confirmation. Endpoint emphasis
+Three buttons select protection, carriage and confirmation. Endpoint emphasis
 and the moving protected record track the selected stage. Arrow keys move
 between stages. All explanatory text remains visible, including without
 JavaScript. The diagram is explicitly labeled as conceptual.
 
 ### Capability and source records
 
-Eight generous link rows combine the capability title, its existing factual
-summary, and source navigation. Hover introduces a tonal sweep and rotates the
-arrow. The lifecycle record keeps protocol, lifecycle, definition, and
-publication as separate values. Current chapter and source links use the same
-signal color as the introductory action.
+Eight link rows combine the capability title, its factual summary and source
+navigation. The lifecycle record keeps protocol, lifecycle, definition and
+publication as separate values.
+
+## Motion
+
+The record advances on its own and pauses with the page's motion control.
+Reduced-motion preference always takes precedence and renders one still step.
 
 ## Do's and Don'ts
 
 - **Do** keep public protocol facts and canonical source links intact.
-- **Do** give the signal, typography, and content room to establish hierarchy.
-- **Do** maintain an equivalent static, keyboard, and reduced-motion experience.
-- **Do** share typography, colors, focus, and navigation across all routes.
+- **Do** maintain an equivalent static, keyboard and reduced-motion experience.
+- **Do** share typography, colors, focus and navigation across all routes.
 - **Don't** convert a conceptual animation into a claim of runtime operation.
 - **Don't** hide navigation or the introductory statement behind loading effects.
-- **Don't** turn every reading component into an animated promotional panel.
+- **Don't** reintroduce green, carbon surfaces or externally hosted fonts.
+- **Don't** put a protocol fact only in the record canvas.
